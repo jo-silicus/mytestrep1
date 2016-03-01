@@ -1,0 +1,272 @@
+<%@ page contentType="text/html; charset=iso-8859-1" language="java" import="java.sql.*" errorPage="" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<script type="text/javascript">
+function enableJavaScript()
+{
+document.forms[0].enableScript.value="Enabled";
+
+}
+var paramval;
+
+function incrementpageno()
+{
+document.forms[0].enableScript.value="Enabled";
+var pageno=document.AssessmentMultiForm.pageNo.value;
+document.AssessmentMultiForm.pageNo.value=parseInt(pageno)+ 1;
+var countno=document.AssessmentMultiForm.nextcount.value;
+document.AssessmentMultiForm.nextcount.value=parseInt(countno)+ 1;
+document.AssessmentMultiForm.questionNo.value=document.AssessmentMultiForm.questionNo.value;
+document.forms[0].action="/execmap/InitNSTX.do";
+}
+
+function showinstt()
+{
+document.forms[0].enableScript.value="Enabled";
+document.AssessmentMultiForm.pageNo.value=parseInt("0");
+document.forms[0].action="/execmap/InitNSTX.do";
+}
+
+function resumefrominstruction()
+{
+document.forms[0].enableScript.value="Enabled";
+var pageno=document.AssessmentMultiForm.nextcount.value;
+document.AssessmentMultiForm.pageNo.value=parseInt(pageno);
+document.forms[0].action="/execmap/InitNSTX.do";
+}
+
+function finish()
+{
+document.forms[0].enableScript.value="Enabled";
+var boolValue=new Boolean(true);
+document.forms[0].nextFinish.value=boolValue.valueOf();
+var pageno=document.AssessmentMultiForm.pageNo.value;
+document.AssessmentMultiForm.pageNo.value=parseInt(pageno)+ 1;
+document.forms[0].action="/execmap/InitNSTX.do";
+}
+
+function setnavigateQuestion()
+{
+	paramval=obj.value;
+	document.forms[0].action="/execmap/InitNSTX.do?"+paramval;
+}
+function linkfunction(val){
+document.forms[0].enableScript.value="Enabled";
+var boolValue=new Boolean(true);
+document.forms[0].urlsetflag.value=boolValue.valueOf();
+document.AssessmentMultiForm.pageNo.value=val;
+document.forms[0].action="/execmap/InitNSTX.do";
+document.forms[0].submit();
+}
+</script>                                     
+
+
+<%@ page language="java" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+<html:form action="/InitNSTX.do">
+<bean:define id="AssessmentMultiForm" name="AssessmentMultiForm"/>
+<bean:define id="pageNo" name="AssessmentMultiForm" property="pageNo"/>
+<bean:define id="nextcount" name="AssessmentMultiForm" property="nextcount"/>
+<bean:define id="questionNo" name="AssessmentMultiForm" property="questionNo"/>
+<html:hidden name="AssessmentMultiForm" property="pageNo" value="<%=pageNo.toString()%>"/>
+<html:hidden name="AssessmentMultiForm" property="nextcount" value="<%=nextcount.toString()%>"/>
+<html:hidden name="AssessmentMultiForm" property="questionNo" value="<%=questionNo.toString()%>"/>
+<html:hidden name="AssessmentMultiForm" property="nextFinish" value=""/>
+<html:hidden name="AssessmentMultiForm" property="timerSet" value=""/>
+<html:hidden name="AssessmentMultiForm" property="questionNo" value=""/>
+<html:hidden name="AssessmentForm" property="urlsetflag" value=""/>
+<html:hidden property="enableScript" value=""/>
+<bean:define id="msg">
+     <bean:message bundle="execmap" key="generic.Assessment.Cancel" />
+     </bean:define>
+     <input type="hidden" name="msg" value="<%=(String)msg%>">
+
+
+<div align="right">
+	<b>
+	<html:hidden name="AssessmentMultiForm" property="startCounting"/>
+	<html:text name="AssessmentMultiForm" property="timer" size="3" onfocus = "blur();" />
+&nbsp&nbsp</b>
+
+<logic:equal name="AssessmentMultiForm" property="startCounting" value="1">
+	<script>
+	initialize();
+	countDown();
+	</script>
+	</logic:equal>
+	
+	
+ </div>
+
+
+<logic:equal name="pageNo" value="0">
+<logic:iterate id="choiceinstruction" name="AssessmentMultiForm" property="instruction">
+
+<font size="3"><b><bean:write name="choiceinstruction"/></b></font>
+
+</logic:iterate>
+</logic:equal>	
+<br>
+<br>
+	
+
+<br>
+<logic:equal name="pageNo" value="0">
+<table width="935" border="0">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+<td width="794">
+    <div align="left">
+    <logic:iterate id="choicetextorurl" name="AssessmentMultiForm" property="textOrUrl">
+    <img src="<%=choicetextorurl%>">
+    </logic:iterate>
+    </div>
+    </td>
+  </tr>
+</table>
+</logic:equal>
+
+<logic:equal name="pageNo" value="0">
+<logic:iterate id="imageurl" name="AssessmentMultiForm" property="questionOptions">
+<font size="3"><b><bean:write name="imageurl" /></b></font>
+</logic:iterate>
+</logic:equal>	
+
+<br>
+<logic:equal name="pageNo" value="0">
+<br>
+<table width="935" border="0">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </td>
+<td width="794">
+    <div align="left">
+   <img src="<bean:write name="AssessmentMultiForm" property="answerInstruction"  />">
+    </div>
+    </td>
+  </tr>
+</table>
+</logic:equal>	
+
+<table width="700" border="0">
+<tr>
+ 
+    <td width="50" >
+    <logic:notEqual name="pageNo" value="0">
+	 <table width ="50" border="1">
+    <logic:iterate id="choiceinstruction1" name="AssessmentMultiForm" property="navigationlist">
+    <%String val=(String)(""+choiceinstruction1);%>
+    <tr><td align="center">
+			                 <logic:lessEqual name="AssessmentMultiForm" property="nextcount" value="<%=val%>">
+			                 <bean:write name="choiceinstruction1"/>
+							</logic:lessEqual >
+							<logic:greaterThan name="AssessmentMultiForm" property="nextcount" value="<%=val%>">
+							<bean:define id="linkImageUrl" name="AssessmentMultiForm" property="linkImageUrl"/>
+                            <img src="<%=linkImageUrl%><%=val%>.jpg "  onclick="javascript:linkfunction('<%=val%>');">
+							</logic:greaterThan>
+	</td></tr>
+	</logic:iterate>
+	</table>
+	</td>
+	<td width="300">
+	</td>
+	<td width="400"  align="centre">
+	<font size="3" COLOR="#FF0000"><b><bean:write name="AssessmentMultiForm" property="answerInstruction"/></b></font>
+	<table height="200" width="300" border="2" rules="none" frame="box" align="left">	
+	
+	 <bean:define id="questionOptions" name="AssessmentMultiForm" property="questionOptions"/>
+     <script>
+   var countRows=0;
+     </script>
+	 <% int choiceCount=1;%>
+   <logic:iterate id="choice" name="questionOptions">
+	<script>
+	 if(countRows%7 == 0)
+	 {
+	document.write("<tr>");
+	countRows++;
+	 }
+	 </script>
+	<td>
+	
+	<logic:notEqual name="choice" value=" ">
+    <html:multibox name="AssessmentMultiForm" property="selectedCheckboxes" value="<%=(""+choiceCount++)%>" />
+	</logic:notEqual>
+	<logic:equal name="choice" value=" ">
+	&nbsp;<%choiceCount++;%>
+	</logic:equal>
+    &nbsp;&nbsp;<bean:write name="choice"/>
+	
+	</td>
+
+	<logic:equal name="choice" value=" ">
+	  <script>
+
+   if(countRows%7 == 6)
+   {
+	document.write("</tr>");
+   }
+    countRows++;
+    </script>
+	</logic:equal>
+    </logic:iterate>
+
+ 
+  </table>
+	</td>
+	</logic:notEqual>
+	</tr>
+	</table>
+
+<p>&nbsp;</p>
+
+<div align="center">
+
+
+<logic:notEqual name="AssessmentMultiForm" property="nextcount" value="0">
+<logic:equal name="pageNo" value="0">
+<html:submit onclick="javascript:resumefrominstruction();enableJavaScript();"><bean:message bundle="execmap" key="generic.resume" /></html:submit>
+</logic:equal>
+</logic:notEqual>
+
+
+
+<logic:equal name="pageNo" value="0">
+<logic:equal name="nextcount" value="0">
+<html:submit onclick="javascript:incrementpageno();enableJavaScript();"><bean:message bundle="execmap" key="generic.start_now" /></html:submit>
+</logic:equal>
+</logic:equal>
+
+<logic:notEqual name="pageNo" value="0">
+<html:submit onclick="javascript:showinstt();enableJavaScript();"><bean:message bundle="execmap" key="subtest.subtest.instructionbutton.instruction" /></html:submit>
+</logic:notEqual>
+
+
+<html:button property="button" onclick="javascript:cancelassessment();enableJavaScript();"><bean:message bundle="execmap" key="generic.cancel" /></html:button>
+
+
+
+<logic:notEqual name="pageNo" value="0">
+<logic:notEqual name="pageNo" value="5">
+<logic:equal name="AssessmentMultiForm" property="urlsetflag" value="false">
+<html:submit onclick="javascript:incrementpageno();enableJavaScript();"><bean:message bundle="execmap" key="generic.next" /></html:submit>
+</logic:equal>
+</logic:notEqual>
+</logic:notEqual>
+
+<logic:equal name="AssessmentMultiForm" property="urlsetflag" value="true">
+<html:submit onclick="javascript:resumefrominstruction();enableJavaScript();"><bean:message bundle="execmap" key="generic.resume" /></html:submit>
+</logic:equal>
+
+<logic:notEqual name="pageNo" value="0">
+<html:submit onclick="javascript:finish();enableJavaScript();"><bean:message bundle="execmap" key="generic.finish" /></html:submit>
+</logic:notEqual>
+
+</div>
+</html:form>

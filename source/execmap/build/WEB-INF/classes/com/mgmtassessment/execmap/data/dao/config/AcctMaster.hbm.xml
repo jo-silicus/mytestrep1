@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.AcctMaster" 
+    table="acct_mas"
+    lazy="false"
+>
+
+    <id
+        name="acctId"
+        type="java.lang.String"
+        column="acct_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="acctTyp"
+        type="java.lang.String"
+        column="acct_typ"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="crtDt"
+        type="java.sql.Timestamp"
+        column="crt_dt"
+        not-null="true"
+        length="23"
+    />
+    <property
+        name="acctStat"
+        type="java.lang.String"
+        column="acct_stat"
+        length="1"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-one association to CoAcctMa -->
+    <one-to-one
+        name="coAcctMa"
+        class="com.mgmtassessment.execmap.data.dao.types.CompanyAcctMaster"
+        outer-join="auto"
+        cascade="all"
+    />
+    <!-- bi-directional one-to-many association to TestSesMa -->
+
+    <set
+        name="testSesMas"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="acct_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.TestSessionMaster"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.AbilityMaster" 
+    table="abil_mas"
+    lazy="false"
+>
+
+    <id
+        name="abilId"
+        type="java.lang.Short"
+        column="abil_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="abilDesc"
+        type="java.lang.String"
+        column="abil_desc"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to AbilSkillRel -->
+
+    <set
+        name="abilSkillRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="abil_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.AbilitySkillRel"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

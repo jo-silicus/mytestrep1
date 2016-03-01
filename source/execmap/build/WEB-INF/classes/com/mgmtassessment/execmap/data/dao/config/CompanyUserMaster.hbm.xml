@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.CompanyUserMaster" 
+    table="co_usr_mas"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.mgmtassessment.execmap.data.dao.types.CompanyUserMasterKey">
+        <key-property 
+            name="acctId" 
+            column="acct_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <key-property 
+            name="usrId" 
+            column="usr_id" 
+            type="java.lang.String"
+            length="15"
+        />
+    </composite-id>    
+    
+     <property 
+            name="grpId" 
+            column="grp_id" 
+            type="java.lang.String"
+            not-null="true"
+            length="15"
+        />
+
+    <property
+        name="passwd"
+        type="java.lang.String"
+        column="passwd"
+        not-null="true"
+        length="15"
+    />
+    <property
+        name="firstName"
+        type="java.lang.String"
+        column="first_name"
+        not-null="true"
+        length="50"
+    />
+       <property
+        name="lastName"
+        type="java.lang.String"
+        column="last_name"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="usrEmail"
+        type="java.lang.String"
+        column="usr_email"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="notes1"
+        type="java.lang.String"
+        column="notes1"
+        length="125"
+    />
+    <property
+        name="notes2"
+        type="java.lang.String"
+        column="notes2"
+        length="125"
+    />
+    <property
+        name="startFlg"
+        type="java.lang.String"
+        column="start_flg"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="usrStat"
+        type="java.lang.String"
+        column="usr_stat"
+        not-null="true"
+        length="1"
+    />
+     <property
+        name="acctLocked"
+        type="java.lang.Integer"
+        column="acct_locked"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="reminderPhrase"
+        type="java.lang.String"
+        column="ReminderPhrase"
+        length="50"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+    <!-- bi-directional many-to-one association to ActvRolMa -->
+    <many-to-one
+        name="actvRolMa"
+        class="com.mgmtassessment.execmap.data.dao.types.ActvRolMaster"
+        not-null="true"
+    >
+        <column name="actv_rol_id" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to CoGrpMa -->
+    <many-to-one
+        name="coGrpMa"
+        class="com.mgmtassessment.execmap.data.dao.types.CompanyGroupMaster"
+        not-null="true"
+        insert="false"
+        update="false"
+    >
+        <column name="acct_id" />
+        <column name="grp_id" />
+    </many-to-one>
+     <!-- bi-directional one-to-many association to CoAcctMa -->
+
+</class>
+</hibernate-mapping>

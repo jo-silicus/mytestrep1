@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/cmsds</value>
+		</property>
+	</bean>
+	
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	<property name="mappingResources">
+			<list>
+                <value>com/mgmtassessment/execmap/data/dao/config/AcctMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/CompanyAcctMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/CompanyUserMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/CompanyGroupMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/ExecmapSysMaster.hbm.xml</value>
+			</list>
+	 </property>
+	 <property name="hibernateProperties">
+		        <props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.default_schema">SQLsysintcue3180</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">
+					true
+				</prop>
+				<prop key="hibernate.default_batch_fetch_size">1</prop>
+			</props>
+		</property>
+	 </bean>
+</beans>

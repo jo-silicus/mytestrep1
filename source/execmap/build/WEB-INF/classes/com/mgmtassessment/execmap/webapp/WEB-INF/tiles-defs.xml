@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+  <definition name="common.loginLayout" path="/pages/layout/loginlayout.jsp">
+    <put name="header" value="/pages/common/execmapheader.jsp" />
+    <put name="language" value="/pages/common/Language.jsp" />
+    <put name="content" value="/pages/common/Logincontent.jsp" /> 
+    <put name="loginfooter" value="/pages/common/Loginfooter.jsp" />
+  </definition>
+  
+  <definition name="main.layout" path="/pages/layout/mainlayout.jsp">
+    <put name="header" value="/pages/common/execmapheader.jsp" />
+    <put name="subheader" value="/pages/common/subheader.jsp" />
+    <put name="whereami" value="" />
+    <put name="content" value="" />
+    <put name="loginfooter" value="/pages/common/Loginfooter.jsp" />
+  </definition>
+  
+  <definition name="report.layout" path="/pages/layout/reportlayout.jsp">
+    <put name="header" value="/pages/common/execmapheader.jsp" />
+    <put name="subheader" value="/pages/common/subheader.jsp" />
+    <put name="whereami" value="/pages/common/whereami.jsp" />
+    <put name="content" value="" />
+    <put name="loginfooter" value="/pages/common/Loginfooter.jsp" />
+  </definition>
+  
+    <definition name="assessment.Layout" path="/pages/layout/assessmentlayout.jsp">
+    <put name="header" value="/pages/common/execmapheader.jsp" />
+    <put name="assessmentsubheader" value="" />
+    <put name="content" value="" />
+    <put name="loginfooter" value="/pages/common/Loginfooter.jsp" />
+  </definition>
+  
+    <definition name="tile.intellicue.Reports"
+		path="/pages/login/Reports.jsp" />
+	
+	<definition name="tile.intellicue.AccountManagement" 				
+             path="/pages/login/AccountManagement.jsp" />
+
+	<definition name="tile.intellicue.GlobalSettings"
+		path="/pages/login/GlobalSettings.jsp" />
+
+	<definition name="tile.intellicue.GeneralReports"
+		path="/pages/login/GeneralReports.jsp" />
+		
+	<definition name="tile.intellicue.Reports.Company.Group.Manager"
+		path="/pages/login/reportsforcompandgroupmanagers.jsp" />
+			
+	<definition name="tile.intellicue.loginmanagement"
+		path="/pages/login/loginmanagement.jsp" />
+	
+    <definition name="tile.intellicue.GeneralReports.Company.Group.Manager"
+		path="/pages/login/GeneralReports_Company_Group_Manager.jsp" />
+
+	<definition name="tile.intellicue.ChangeProfile"
+		path="/pages/login/ChangeProfile.jsp">
+	</definition>
+
+	<definition name="tile.intellicue.GroupManagement"
+		path="/pages/login/GroupManagement.jsp">
+	</definition>
+	
+	<definition name="tile.intellicue.Help"
+		path="/pages/login/Help.jsp">
+	</definition>
+
+	<definition name="tile.intellicue.StartAssessment"
+		path="/pages/login/StartAssessment.jsp">
+	</definition>
+
+	<definition name="tile.intellicue.UploadFile"
+		path="/pages/login/UploadFile.jsp">
+	</definition>
+	<definition name="tile.execmap.AddCobrand"
+		path="/pages/login/AddCobrand.jsp">
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.SubTestCorrecTemp" 
+    table="sub_test_correc_temp"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.mgmtassessment.execmap.data.dao.types.SubTestCorrecTempKey">
+        <key-property 
+            name="triId" 
+            column="tri_id" 
+            type="java.lang.String"
+            length="4"
+        />
+        <key-property 
+            name="subTestId" 
+            column="sub_test_id" 
+            type="java.lang.String"
+            length="2"
+        />
+        <key-property 
+            name="quesId" 
+            column="ques_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+        <key-property 
+            name="ansId" 
+            column="ans_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+        <key-property 
+            name="langId" 
+            column="Lang_id" 
+            type="java.lang.String"
+            length="10"
+        />
+    </composite-id>    
+
+    <property
+        name="marks"
+        type="java.math.BigDecimal"
+        column="marks"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="seqId"
+        type="java.lang.Short"
+        column="seq_id"
+        length="5"
+    />
+    <property
+        name="stPos"
+        type="java.lang.Short"
+        column="st_pos"
+        length="5"
+    />
+    <property
+        name="endPos"
+        type="java.lang.Short"
+        column="end_pos"
+        length="5"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to SubTestMa -->
+    <many-to-one
+        name="subTestMa"
+	    class="com.mgmtassessment.execmap.data.dao.types.SubTestMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="tri_id" />
+    	<column name="sub_test_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

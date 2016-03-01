@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.TestSesSkillScrDet" 
+    table="test_ses_skill_scr_det"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.mgmtassessment.execmap.data.dao.types.TestSesSkillScrDetKey">
+        <key-property 
+            name="acctId" 
+            column="acct_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <key-property 
+            name="sesId" 
+            column="ses_id" 
+            type="java.lang.Integer"
+            length="10"
+        />
+        <key-property 
+            name="skillId" 
+            column="skill_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+    </composite-id>    
+
+    <property
+        name="skillStanScr"
+        type="java.math.BigDecimal"
+        column="skill_stan_scr"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to TestSesMa -->
+    <many-to-one
+        name="testSesMa"
+	    class="com.mgmtassessment.execmap.data.dao.types.TestSessionMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="acct_id" />
+    	<column name="ses_id" />
+	</many-to-one>
+	
+    <!-- bi-directional many-to-one association to SkillMa -->
+    <many-to-one
+        name="skillMa"
+	    class="com.mgmtassessment.execmap.data.dao.types.SkillMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="skill_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

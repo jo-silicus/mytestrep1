@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<search-metadata>
+        
+	<key-query-mapping>
+        <search-query key-name="LastAccountIdQueryKey">
+			<query-value><![CDATA[Select lstAcctNo from IntellicueSysMa]]></query-value>
+		</search-query> 
+		<search-query key-name="AccountMasterQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CoUsrMa C, CoAcctMa A, AcctMa B   where  A.acctId=B.acctId and A.acctId=C.comp_id.acctId and A.acctId = $ACCTID and B.acctStat = $ACCTSTAT and C.actvRolId= 2 and A.coName like $COMPNAME ]]></query-value>
+		</search-query>
+		<search-query key-name="AccountMasterQueryDetailKey">
+		<query-value><![CDATA[from CoAcctMa A where A.acctId = $ACCTID and A.coName like  $COMPNAME ORDER BY A.coName]]></query-value>
+		</search-query>
+       <search-query key-name="GlobalSettingDetailKey">
+		<query-value><![CDATA[from IntellicueSysMa]]></query-value>
+       	</search-query>
+       	
+       	
+<search-query key-name="ChkUserQueryKey">
+		<query-value><![CDATA[from CoUsrMa A where A.comp_id.usrId = $USRID]]></query-value>
+		</search-query>
+	</key-query-mapping>
+</search-metadata>

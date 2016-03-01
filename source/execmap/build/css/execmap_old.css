@@ -1,0 +1,185 @@
+@import url('mambo.css');
+@import url('sifr.css');
+@import url('menu.css');
+/* CSS Document */
+body, html {
+	background-color: #FAFDFF;
+	margin: 0px;
+	padding: 0px;
+	color: #222;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	height:100%;
+}
+
+#outer {
+	height:100%;
+	min-height:100%;/*for mozilla*/
+	color: #fff;
+	background: url(../images/bg.gif) repeat-x top #FAFDFF;
+	
+}
+html>body #outer {height:auto}
+
+img {
+	border: 3px solid #A5C4DC;
+	padding: 1px;
+}
+#logo {
+	width: 262px;
+	height: 102px;
+	background-image: url(../images/logo.gif);
+	float: left;
+}
+#nav {
+	height: 40px;
+	width: 65%;
+	float: left;
+	margin: 62px 0 0 0;
+}
+/********************************LEFT COL/*********************************/
+#leftcol {
+	width: 294px;
+	float: left;
+	clear: both;
+	margin: 4px 0 0 4px;
+}
+#header {
+	margin: 0px 0 0 0;
+	width: 294px;
+	height: 354px;
+	background: url(../images/header.jpg) no-repeat;
+}
+/************************************************************************/
+/************************Assessment Model********************************/
+
+
+#assessment-model {
+	margin: 2px 0 0 0;
+	background-image:url(../images/assessment-model-over.gif);
+}
+#assessment-model a {
+	display: block;
+	width: 294px;
+	height: 51px;
+	background-image:url(../images/assessment-model.gif)
+}
+
+#assessment-model a:hover {
+	background: none;
+}
+
+/************************************************************************/
+/*******************************Interview Model**************************/
+
+
+#interview-model {
+	margin: 2px 0 0 0;
+	background-image:url(../images/interview-model-over.gif);
+}
+#interview-model a {
+	display: block;
+	width: 294px;
+	height: 51px;
+	background-image:url(../images/interview-model.gif)
+}
+
+#interview-model a:hover {
+	background: none;
+}
+
+
+/************************************************************************/
+/*************************Assessment Software****************************/
+
+#assessment-soft {
+	margin: 2px 0 0 0;
+	background-image:url(../images/assessment-soft-over.gif);
+}
+#assessment-soft a {
+	display: block;
+	width: 294px;
+	height: 51px;
+	background-image:url(../images/assessment-soft.gif)
+}
+
+#assessment-soft a:hover {
+	background: none;
+}
+
+
+
+/************************************************************************/
+/*************************Path to Profit*********************************/
+
+#path-prof {
+	margin: 2px 0 0 0;
+	background-image:url(../images/path-prof-over.gif);
+}
+#path-prof a {
+	display: block;
+	width: 294px;
+	height: 230px;
+	background-image:url(../images/path-prof.gif)
+}
+
+#path-prof a:hover {
+	background: none;
+}
+
+/************************************************************************/
+
+#rightcol {
+	float: left;
+	margin: 20px 2% 20px 3%;
+	width: 53%;
+	height: 600px;
+
+
+}
+
+
+
+.cleaner
+{
+  clear:both;
+  height:1px;
+  font-size:1px;
+  border:none;
+  margin:0; padding:0;
+  background:transparent;
+	visibility: hidden;
+}
+.footer {
+
+	margin: 30px auto 0 auto;
+	text-align: right;
+	font: Arial, Helvetica, sans-serif;
+	color:#86A4BB;
+	font-size: 9px;
+	padding-top: 0px;
+	padding-bottom: 4px;
+	width: auto;
+	border-top: 1px dotted #DAEEFE;
+}
+.footer a:link {
+	color: #023F70;
+	font-size: 9px;
+	font-weight: bold;
+	text-decoration: none;
+	border-bottom: 0px dashed #305170;
+}
+.footer a:visited {
+	color: #023F70;
+	font-size: 9px;
+	font-weight: bold;
+	text-decoration: none;
+	border-bottom: 0px dashed #305170;
+}
+.footer a:hover {
+	color: #999;
+	font-size: 9px;
+	font-weight: bold;
+	text-decoration: none;
+	border-bottom: 1px dashed #CCCCCC;
+}

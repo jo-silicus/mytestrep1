@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.RptParaMaster" 
+    table="rpt_para_mas"
+    lazy="false"
+>
+
+    <composite-id>
+        <key-property 
+            name="paraId" 
+            column="para_id" 
+            type="java.lang.String"
+            length="20"
+        />
+        <key-property 
+            name="paraDesc" 
+            column="para_desc" 
+            type="java.sql.Clob"
+            length="1073741823"
+        />
+        <key-property 
+            name="langId" 
+            column="Lang_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <key-property 
+            name="version" 
+            column="version" 
+            type="java.lang.Integer"
+            length="10"
+        />
+    </composite-id>    
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

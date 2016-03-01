@@ -1,0 +1,69 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration//EN" "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+<tiles-definitions>
+
+	<!-- =======================================================  -->
+	<!-- Master Definitions                                       -->
+	<!-- =======================================================  -->
+
+	
+     <definition name="tile.execmap.language"
+  		        path="language.jsp"/>
+	<definition name="tile.execmap.Loginheader"
+                path="/jsp/Loginheader.jsp"/>
+                
+    <definition name="tile.execmap.Loginfooter"
+                path="/jsp/Loginfooter.jsp"/>
+
+	<definition name="tile.execmap.Reports"
+		path="/jsp/common/Reports.jsp" />
+		
+
+	<definition name="tile.execmap.Options"
+		path="/jsp/common/Options.jsp" />
+
+	<definition name="tile.execmap.AccountManagement" 				
+             path="/jsp/common/AccountManagement.jsp" />
+
+	<definition name="tile.execmap.GlobalSettings"
+		path="/jsp/common/GlobalSettings.jsp" />
+
+	<definition name="tile.execmap.GeneralReports"
+		path="/jsp/common/GeneralReports.jsp" />
+
+
+	<definition name="tile.execmap.ChangeProfile"
+		path="/jsp/common/ChangeProfile.jsp">
+	</definition>
+
+
+	<definition name="tile.execmap.GroupManagement"
+		path="/jsp/common/GroupManagement.jsp">
+	</definition>
+
+
+	<definition name="tile.execmap.Header"
+		path="/jsp/common/Header.jsp">
+	</definition>
+
+
+	<definition name="tile.execmap.Help"
+		path="/jsp/common/Help.jsp">
+	</definition>
+
+
+	<definition name="tile.execmap.LogoutOptions"
+		path="/jsp/common/Logout.jsp">
+	</definition>
+
+
+	<definition name="tile.execmap.StartAssessment"
+		path="/jsp/common/StartAssessment.jsp">
+	</definition>
+
+	<definition name="tile.execmap.UploadFile"
+		path="/jsp/common/UploadFile.jsp">
+	</definition>
+
+
+	
+</tiles-definitions>  

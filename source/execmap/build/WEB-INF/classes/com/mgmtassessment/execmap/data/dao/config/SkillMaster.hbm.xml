@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.SkillMaster" 
+    table="skill_mas"
+    lazy="false"
+>
+
+    <id
+        name="skillId"
+        type="java.lang.Short"
+        column="skill_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="parSkill"
+        type="java.lang.Short"
+        column="par_skill"
+        length="5"
+    />
+    <property
+        name="skillName"
+        type="java.lang.String"
+        column="skill_name"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="skillDesc"
+        type="java.lang.String"
+        column="skill_desc"
+        length="500"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-one association to SkillMa -->
+
+    <!-- bi-directional one-to-many association to AbilSkillRel -->
+
+    <set
+        name="abilSkillRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.AbilitySkillRel"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SkillTriRel -->
+
+    <set
+        name="skillTriRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.SkillTriRel"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to TestSesSkillScrDet -->
+
+    <set
+        name="testSesSkillScrDets"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.TestSesSkillScrDet"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SkillLvlTriRel -->
+
+    <set
+        name="skillLvlTriRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.SkillLvlTriRel"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SkillGrpSkillRel -->
+
+    <set
+        name="skillGrpSkillRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.SkillGrpSkillRel"
+        />
+    </set>
+    <!-- bi-directional one-to-one association to SkillMa -->
+    
+
+</class>
+</hibernate-mapping>

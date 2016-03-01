@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<search-metadata>
+        
+	<key-query-mapping>
+         <search-query key-name="SearchAccountIdQueryKey">
+			<query-value><![CDATA[select COUNT(*) from TestSessionMaster A where A.comp_id.acctId=$acctid]]></query-value>
+		    </search-query>
+        <search-query key-name="AccountMasterQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyUserMaster C, CompanyAcctMaster A, AcctMaster B   where  A.acctId=B.acctId and A.acctId=C.comp_id.acctId and A.acctId = $ACCTID and B.acctStat = $ACCTSTAT and C.actvRolMa.actvRolId= 2 and A.coName like $COMPNAME ]]></query-value>
+		</search-query>
+		<search-query key-name="AccountMasterQueryDetailKey">
+		<query-value><![CDATA[from CompanyAcctMaster A where A.acctId = $ACCTID and A.coName like  $COMPNAME ORDER BY A.coName]]></query-value>
+		</search-query>
+       <search-query key-name="GlobalSettingDetailKey">
+		<query-value><![CDATA[ from ExecmapSysMaster]]></query-value>
+       	</search-query>
+       	<search-query key-name="GroupMasterQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyGroupMaster A,CompanyUserMaster B where A.comp_id.acctId=$ACCTID and A.comp_id.acctId=B.comp_id.acctId and A.comp_id.grpId=B.grpId and B.actvRolMa.actvRolId=3 and A.grpStat='D' ]]></query-value>
+		</search-query>
+       	
+	<search-query key-name="TestCorrectScoresData">
+		<query-value><![CDATA[from SubTestCorrecTemp A where A.comp_id.langId= $LANGID and A.comp_id.subTestId= 'x']]></query-value>
+       	</search-query>
+
+	<search-query key-name="SessionIDQueryKey">
+		<query-value><![CDATA[select A.comp_id.sesId  from TestSesMa A where A.comp_id.acctId = $ACCTID and A.usrId = $USRID ]]></query-value>
+		</search-query>
+       	
+	<search-query key-name="ChkUserQueryKey">
+		<query-value><![CDATA[from CoUsrMa A where A.comp_id.usrId = $USRID]]></query-value>
+		</search-query>
+		
+	<search-query key-name="DisableCompanyQueryKey">
+		<query-value><![CDATA[from CompanyAcctMaster A where A.acctStat = 'D' ORDER BY A.acctId]]></query-value>
+	</search-query>
+	
+	<search-query key-name="AccountMasterQueryDisableKey">
+		<query-value><![CDATA[SELECT COUNT(*) FROM CompanyUserMaster C, CompanyAcctMaster A  where A.acctId=C.comp_id.acctId and A.acctStat = 'D' and A.acctId = $ACCTID ]]></query-value>
+	</search-query>
+		
+	<search-query key-name="SearchDisableCompanyQueryKey">
+		<query-value><![CDATA[from CompanyAcctMaster A where A.coName like  $COMPNAME and A.acctStat = 'D' ORDER BY A.acctId]]></query-value>
+	</search-query>
+	
+	<search-query key-name="CountCompanyUserQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyUserMaster C  where  C.comp_id.acctId = $ACCTID and C.comp_id.usrId = $USRID and C.passwd = $PASSWD ]]></query-value>
+		</search-query>
+	
+	<search-query key-name="CountCompanyUserMasterQuery">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyGroupMaster C  where  C.comp_id.acctId = $ACCTID and  C.comp_id.usrId = $USRID ]]></query-value>
+		</search-query>
+		
+	<search-query key-name="PasswordReminderQuery">
+			<query-value><![CDATA[FROM CompanyUserMaster C  where  C.comp_id.acctId = $ACCTID and  C.comp_id.usrId = $USRID and C.usrEmail = $EMAIL ]]></query-value>
+		</search-query>	
+		
+		<search-query key-name="FindSessionIdKey">
+			<query-value><![CDATA[Select count(A.comp_id.sesId) from TestSessionMaster A where A.comp_id.acctId=$acctid and A.usrId=$userid]]></query-value>
+		    </search-query> 
+
+	<search-query key-name="GetMaximumSessionIdKey">
+			<query-value><![CDATA[Select MAX(A.comp_id.sesId) from TestSessionMaster A where A.comp_id.acctId=$acctid and A.usrId=$userid]]></query-value>
+		    </search-query> 
+
+			    <search-query key-name="GetStartTestFlagKey">
+			<query-value><![CDATA[Select A.startFlg from CompanyUserMaster A where A.comp_id.acctId=$acctid and A.comp_id.usrId=$userid]]></query-value>
+		    </search-query> 
+		    
+		    <search-query key-name="GetCompleteFlagKey">
+			<query-value><![CDATA[Select A.compFlg from TestSessionMaster A where A.comp_id.acctId=$acctid and A.usrId=$userid and A.comp_id.sesId=$sessionid]]></query-value>
+		    </search-query> 
+		    
+		    <search-query key-name="CountCompleteFlagKey">
+			<query-value><![CDATA[Select COUNT(A.compFlg) from TestSessionMaster A where A.comp_id.acctId=$acctid and A.usrId=$userid and A.comp_id.sesId=$sessionid]]></query-value>
+		    </search-query> 
+		    
+		    <search-query key-name="GetDays14CrossedKey">
+			<query-value><![CDATA[Select (B.testDur - DATEDIFF(DD, A.dtStart ,GETDATE())) from TestSessionMaster A,
+			ExecmapSysMaster B where A.comp_id.acctId=$acctid and A.usrId=$userid and A.comp_id.sesId=$sessionid]]></query-value>
+		    </search-query>
+		    
+		    <search-query key-name="SessionQueryKey">
+			<query-value><![CDATA[select MAX(A.comp_id.sesId) from TestSessionMaster A where A.comp_id.acctId=$acctid]]></query-value>
+		    </search-query>
+		    
+		    <search-query key-name="StanineScoreQueyKey">
+		<query-value><![CDATA[select A.stanScr from StanScrConvMat A where A.triMa.triId = $TRIID and $RAWSCORE  between A.rawScrLwrLmt and A.rawScrUprLmt]]></query-value>
+		</search-query>
+		    
+		 <search-query key-name="StanineScoreNFUQueyKey">
+		<query-value><![CDATA[select A.stanScr from StanScrConvMat A where  A.triMa.triId  = $TRIID and $RAWSCORE  between A.rawScrLwrLmt and A.rawScrUprLmt and $STDDEVIATION between A.rawScrLwrLmtMem and A.rawScrUprLmtMem]]></query-value>
+		</search-query>
+		
+		    <!--added by prasun-->
+		    <search-query key-name="GroupMasterQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyGroupMaster A,CompanyUserMaster B where A.comp_id.acctId=$ACCTID and A.comp_id.acctId=B.comp_id.acctId and A.comp_id.grpId=B.grpId and B.actvRolMa.actvRolId=3 and A.grpStat='D' ]]></query-value>
+		</search-query>
+		
+		<search-query key-name="MoveGroupUsersQueryKey">
+			<query-value><![CDATA[ FROM  CompanyUserMaster A where A.comp_id.acctId = $ACCTID and A.grpId=$GRPID]]></query-value>
+		</search-query>
+		
+		<search-query key-name="UserMasterQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyUserMaster A, CompanyGroupMaster B where A.comp_id.acctId=$ACCTID and A.grpId=$GRPID and B.comp_id.acctId=A.comp_id.acctId and B.comp_id.grpId=A.grpId and A.actvRolMa.actvRolId=5 and A.usrStat='D' ]]></query-value>
+			<!-- actvRolId should be 4 in case of users-->
+		</search-query>
+		 
+	<search-query key-name="CountCompanyUserQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyUserMaster C  where  C.comp_id.acctId = $ACCTID and C.comp_id.usrId = $USRID and C.passwd = $PASSWD ]]></query-value>
+		</search-query>
+	
+	<search-query key-name="CountCompanyUserMasterQuery">
+			<query-value><![CDATA[SELECT COUNT(*) FROM CompanyGroupMaster C  where  C.comp_id.acctId = $ACCTID and  C.comp_id.usrId = $USRID ]]></query-value>
+		</search-query>	
+	
+		<search-query key-name="GroupIDKey">
+			<query-value><![CDATA[select grpId from CompanyUserMaster where comp_id.acctId = $ACCTID and comp_id.usrId = $USRID]]></query-value>
+		</search-query>
+		<search-query key-name="GroupManagerKey">
+			<query-value><![CDATA[from CompanyUserMaster C where C.comp_id.acctId = $ACCTID and C.grpId = $GRPID and C.actvRolMa.actvRolId = 3]]></query-value>
+		</search-query>
+		<search-query key-name="CompanyManagerKey">
+			<query-value><![CDATA[from CompanyUserMaster C where C.comp_id.acctId = $ACCTID and C.actvRolMa.actvRolId = 2]]></query-value>
+		</search-query>
+		
+		<search-query key-name="UserIdKey">
+            <query-value><![CDATA[select distinct TSM.usrId from TestSessionMaster TSM where TSM.compFlg = 'T' and TSM.comp_id.acctId = $ACCTID]]></query-value>
+    	</search-query>
+		
+		<search-query key-name="CountTesteeUserKey">
+            <query-value><![CDATA[select distinct C.comp_id.usrId,C.firstName||' '||C.lastName from CompanyUserMaster C,TestSessionMaster TSM where C.grpId = $GRPID 
+                            and C.usrStat = 'E' and C.comp_id.acctId = TSM.comp_id.acctId and TSM.compFlg = 'T' and C.comp_id.acctId = $ACCTID 
+                            and C.actvRolMa.actvRolId > 3 and C.comp_id.usrId = TSM.usrId]]></query-value>
+	</search-query>
+
+			
+   <search-query key-name="StanScoreKey">
+		<query-value><![CDATA[select TSS.skillStanScr from TestSesSkillScrDet TSS where TSS.comp_id.acctId = $ACCTID and TSS.comp_id.skillId = $SKILLID and
+                                  TSS.comp_id.sesId=(select max(TSM.comp_id.sesId) from TestSessionMaster TSM where TSM.usrId = $USRID and TSM.compFlg = 'T' and TSM.comp_id.acctId = $ACCTIDD)]]></query-value>
+	</search-query>	
+	
+	
+	<search-query key-name="CalculateRawScoreQueryKey">
+			<query-value><![CDATA[Select A.marks from SubTestCorrecTemp A where A.comp_id.triId=$trigram and A.comp_id.subTestId
+			=$subtestid and A.comp_id.quesId=$questionid and A.comp_id.ansId=$answerid and A.comp_id.langId=$anguageid]]></query-value>
+		</search-query> 
+		                                                     
+	<search-query key-name="GetSequenceIdQueryKey">
+			<query-value><![CDATA[SELECT COUNT(*) FROM TestSesScrDet C  where  C.comp_id.acctId = $ACCTID and  C.comp_id.sesId = $SESSIONID ]]></query-value>
+		</search-query>
+
+		<search-query key-name="GetTriGramIdQueryKey">
+			<query-value><![CDATA[ FROM TrigramMaster   where  actSeqNum=$SEQUENCEID ]]></query-value>
+		</search-query>
+	
+	<search-query key-name="ValidateUser">
+		<query-value><![CDATA[SELECT A.acctTyp,A.acctStat FROM AcctMaster A where A.acctId=$ACCTID]]></query-value>
+		</search-query>
+		<search-query key-name="ValidateAdmin">
+		<query-value><![CDATA[FROM  ExecmapSysMaster A where A.intlcAcctId=$ACCTID and A.intlcUsrId=$USERID and A.intlcPasswd=$PASSWORD]]></query-value>
+		</search-query>
+		<search-query key-name="ValidateCompanyUser">
+		<query-value><![CDATA[SELECT A.actvRolMa.actvRolId,A.usrStat,A.acctLocked FROM CompanyUserMaster A where A.comp_id.acctId=$ACCTID and  A.comp_id.usrId=$USERID and A.passwd=$PASSWORD]]></query-value>
+		</search-query>
+		
+		<search-query key-name="GetGroupStatus">
+		<query-value><![CDATA[SELECT  A.grpStat FROM CompanyGroupMaster A,CompanyUserMaster B where 
+		A.comp_id.acctId=$ACCTID=B.comp_id.acctId=$ACCTID and A.comp_id.grpId= B.grpId and B.comp_id.acctId=$ACCTID and  B.comp_id.usrId=$USERID ]]></query-value>
+		</search-query>
+		
+		<search-query key-name="GetLockStatus">
+		<query-value><![CDATA[SELECT A.actvRolMa.actvRolId, A.acctLocked FROM CompanyUserMaster A where 
+		 A.comp_id.acctId=$ACCTID and  A.comp_id.usrId=$USERID ]]></query-value>
+		</search-query>
+		
+		<!--Added to unlock the users-->
+		
+		<search-query key-name="AllLockedUsersKey">
+			<query-value><![CDATA[FROM CompanyUserMaster A where A.acctLocked>2 order by A.comp_id.acctId]]></query-value>
+		</search-query>
+		
+		<search-query key-name="CompanyLockedUsersKey">
+			<query-value><![CDATA[FROM CompanyUserMaster A where A.comp_id.acctId=$ACCTID and A.acctLocked>2 and A.actvRolMa.actvRolId > 2 order by A.comp_id.grpId]]></query-value>
+		</search-query>
+		
+		<search-query key-name="GroupLockedUsersKey">
+			<query-value><![CDATA[FROM CompanyUserMaster A where A.comp_id.acctId=$ACCTID and A.grpId=$GRPID and A.acctLocked>2 and A.actvRolMa.actvRolId = 5 order by A.comp_id.usrId]]></query-value>
+		</search-query>
+		
+		<search-query key-name="SelectUser">
+			<query-value><![CDATA[FROM CompanyUserMaster C  where  C.comp_id.acctId = $ACCTID and  C.comp_id.usrId = $USRID ]]></query-value>
+		</search-query>	
+				
+		<search-query key-name="ReportIdKey">
+			<query-value><![CDATA[SELECT A.rptMa.rptId FROM CompanyAcctMaster A  where  A.acctId = $ACCTID ]]></query-value>
+		</search-query>	
+		
+	</key-query-mapping>
+</search-metadata>

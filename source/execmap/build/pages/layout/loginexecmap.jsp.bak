@@ -1,0 +1,9 @@
+<%@ page language="java" %>
+<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+
+<tiles:insert page="/pages/layout/loginlayout.jsp" flush="true">
+   <tiles:put name="header" value="/pages/common/Loginheader.jsp" />
+   <tiles:put name="language" value="/pages/common/Language.jsp" />
+   <tiles:put name="content" value="/pages/common/Logincontent.jsp" />
+   <tiles:put name="loginfooter" value="/pages/common/Loginfooter.jsp" /> 
+</tiles:insert>

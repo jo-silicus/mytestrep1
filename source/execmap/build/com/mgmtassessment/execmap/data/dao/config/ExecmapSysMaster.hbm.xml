@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.ExecmapSysMaster" 
+    table="intellicue_sys_mas"
+    lazy="false"
+>
+<id
+        name="sysMasId"
+        type="short"
+        column="sys_mas_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+    
+        <property 
+            name="lstAcctNo" 
+            column="lst_acct_no" 
+            type="int"
+            length="10"
+        />
+        <property 
+            name="testDur" 
+            column="test_dur" 
+            type="short"
+            length="5"
+        />
+        <property 
+            name="intlcAcctId" 
+            column="intlc_acct_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <property 
+            name="intlcUsrId" 
+            column="intlc_usr_id" 
+            type="java.lang.String"
+            length="15"
+        />
+        <property 
+            name="intlcPasswd" 
+            column="intlc_passwd" 
+            type="java.lang.String"
+            length="15"
+        />
+        <property 
+            name="emailServerName" 
+            column="email_server_name" 
+            type="java.lang.String"
+            length="50"
+        />
+        <property 
+            name="emailServerPort" 
+            column="email_server_port" 
+            type="java.lang.String"
+            length="4"
+        />
+        <property 
+            name="emailServerUserid" 
+            column="email_server_userid" 
+            type="java.lang.String"
+            length="20"
+        />
+        <property 
+            name="emailServerPassword" 
+            column="email_server_password" 
+            type="java.lang.String"
+            length="20"
+        />
+        <property 
+            name="version" 
+            column="version" 
+            type="java.lang.Integer"
+            length="10"
+        />
+       
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

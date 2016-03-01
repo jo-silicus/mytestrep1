@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.TestSesScrDet" 
+    table="test_ses_scr_det"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.mgmtassessment.execmap.data.dao.types.TestSesScrDetKey">
+        <key-property 
+            name="acctId" 
+            column="acct_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <key-property 
+            name="sesId" 
+            column="ses_id" 
+            type="java.lang.Integer"
+            length="10"
+        />
+        <key-property 
+            name="triId" 
+            column="tri_id" 
+            type="java.lang.String"
+            length="4"
+        />
+        <key-property 
+            name="subTestId" 
+            column="sub_test_id" 
+            type="java.lang.String"
+            length="2"
+        />
+    </composite-id>    
+
+    <property
+        name="rawScr"
+        type="java.math.BigDecimal"
+        column="raw_scr"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="stanScore"
+        type="java.math.BigDecimal"
+        column="stan_score"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="exclFlg"
+        type="java.lang.String"
+        column="excl_flg"
+        length="1"
+    />
+    <property
+        name="audioFlg"
+        type="java.lang.String"
+        column="audio_flg"
+        length="1"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+    <property
+        name="deviation"
+        type="java.lang.Integer"
+        column="deviation"
+        length="10"
+    />
+    
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to TestSesMa -->
+    <many-to-one
+        name="testSesMa"
+	    class="com.mgmtassessment.execmap.data.dao.types.TestSessionMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="acct_id" />
+    	<column name="ses_id" />
+	</many-to-one>
+	
+    <!-- bi-directional many-to-one association to SubTestMa -->
+    <many-to-one
+        name="subTestMa"
+	    class="com.mgmtassessment.execmap.data.dao.types.SubTestMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="tri_id" />
+    	<column name="sub_test_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

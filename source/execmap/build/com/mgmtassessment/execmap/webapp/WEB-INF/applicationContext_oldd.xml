@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+	
+
+
+<beans>
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/cmsds</value>
+		</property>
+	</bean>
+	
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	<property name="mappingResources">
+			<list>
+				<value>intellicue/vo/AcctMa.hbm.xml</value>
+				<value>intellicue/vo/CoAcctMa.hbm.xml</value>
+				<value>intellicue/vo/CoUsrMa.hbm.xml</value>	
+				<value>intellicue/vo/CoGrpMa.hbm.xml</value>
+				<value>intellicue/vo/IntellicueSysMa.hbm.xml</value>
+			</list>
+			</property>
+			<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.default_schema">SQLsysintcue3180</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">
+					true
+				</prop>
+				<prop key="hibernate.default_batch_fetch_size">1</prop>
+			</props>
+		</property>
+		</bean>
+
+	
+		<bean id="myHibernateInterceptor"
+			class="org.springframework.orm.hibernate3.HibernateInterceptor">
+			<property name="sessionFactory">
+				<ref bean="mySessionFactory" />
+			</property>
+		</bean>
+	
+		<bean id="myTransactionManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory">
+				<ref bean="mySessionFactory" />
+		</property>
+		
+		</bean>
+		
+		
+	<bean id="hqlSearch"
+		class="intellicue.search.HQLSearch">
+		<property name="sessionFactory" ref="mySessionFactory"/>
+	</bean>
+	
+	<bean id="debugInterceptor"
+			class="intellicue.utils.DebugInterceptor">
+	</bean>
+	
+	
+	<bean id="AdminReport"
+			class="intellicue.report.dao.impl.AdminReportDAOImpl">
+			<property name="sessionFactory" ref="mySessionFactory"/>
+		</bean>
+		
+		
+		
+		<bean id="AdminReportDAO"
+				class="org.springframework.aop.framework.ProxyFactoryBean">
+				<property name="proxyInterfaces">
+					<value>intellicue.report.dao.AdminReportDAO</value>
+				</property>
+				<property name="target">
+					<ref bean="AdminReport" />
+				</property>
+				<property name="interceptorNames">
+					<list>
+						<value>myHibernateInterceptor</value>
+						<value>debugInterceptor</value>
+					</list>
+				</property>
+		</bean>
+		
+		
+		
+	
+
+	<bean id="propertiesmanager"
+		class="intellicue.utils.PropertiesManager">
+	</bean>
+
+	
+	<bean id="myCompanyManager"
+		class="intellicue.company.manager.impl.CompanyManagerImpl">
+		
+	</bean>
+	<bean id="GlobalSettingManager"
+			class="intellicue.globalsettings.manager.impl.GlobalSettingManagerImpl">
+    </bean>
+	
+	
+<bean id="ReportManager"
+		class="intellicue.report.manager.impl.ReportManager">
+		<property name="propertiesManager" ref="propertiesmanager"/>
+	</bean>
+
+
+<bean id="GlobalSetting"
+			class="intellicue.globalsettings.dao.impl.GlobalSettingDaoImpl">
+			<property name="sessionFactory" ref="mySessionFactory"/>
+		</bean>
+		
+		<bean id="GlobalSettingDao"
+				class="org.springframework.aop.framework.ProxyFactoryBean">
+				<property name="proxyInterfaces">
+					<value>intellicue.globalsettings.dao.GlobalSettingDao</value>
+				</property>
+				<property name="target">
+					<ref bean="GlobalSetting" />
+				</property>
+				<property name="interceptorNames">
+					<list>
+						<value>myHibernateInterceptor</value>
+						<value>debugInterceptor</value>
+					</list>
+				</property>
+		</bean>
+		
+		
+		<bean id="myCompanyDao"
+			class="intellicue.company.dao.impl.CompanyDAOImpl">
+			<property name="sessionFactory" ref="mySessionFactory"/>
+		</bean>
+		
+		<bean id="CompanyDAO"
+				class="org.springframework.aop.framework.ProxyFactoryBean">
+				<property name="proxyInterfaces">
+					<value>intellicue.company.dao.CompanyDAO</value>
+				</property>
+				<property name="target">
+					<ref bean="myCompanyDao" />
+				</property>
+				<property name="interceptorNames">
+					<list>
+						<value>myHibernateInterceptor</value>
+						<value>debugInterceptor</value>
+					</list>
+				</property>
+		</bean>
+			
+			
+	
+	<bean id="myUserManager"
+		class="intellicue.user.manager.impl.UserManagerImpl">
+		
+	</bean>
+<bean id="userDAO"
+		class="intellicue.user.dao.impl.UserDAOImpl">
+	<property name="sessionFactory">
+				<ref bean="mySessionFactory" />
+		</property>	
+	</bean>
+	
+	
+	
+ <bean id="myGroupManager"
+		class="intellicue.groups.manager.impl.GroupManagerImpl">
+		
+	</bean>
+	
+			
+	<bean id="GroupDAO"
+			class="intellicue.groups.dao.impl.GroupDAOImpl">
+			<property name="sessionFactory" ref="mySessionFactory"/>
+		</bean>
+		
+		
+	</beans>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE form-validation PUBLIC
+"-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.0.1//EN"
+"/org/apache/commons/validator/resources/validator_1_0_1.dtd">
+<!--
+	$Id: validator-rules.xml,v 1.1 2006/06/17 09:17:12 barthwpr Exp $
+	
+	This file contains the default Struts Validator pluggable validator
+	definitions.  It should be placed somewhere under /WEB-INF and
+	referenced in the struts-config.xml under the plug-in element
+	for the ValidatorPlugIn.
+	
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+	<set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+	/WEB-INF/validation.xml"/>
+	</plug-in>
+	
+	These are the default error messages associated with
+	each validator defined in this file.  They should be
+	added to your projects ApplicationResources.properties
+	file or you can associate new ones by modifying the
+	pluggable validators msg attributes in this file.
+	
+	# Struts Validator Error Messages
+	errors.required={0} is required.
+	errors.minlength={0} can not be less than {1} characters.
+	errors.maxlength={0} can not be greater than {1} characters.
+	errors.invalid={0} is invalid.
+	
+	errors.email={0} is an invalid e-mail address.
+	
+	Note: Starting in Struts 1.2.0 the default javascript definitions have
+	been consolidated to commons-validator. The default can be overridden
+	by supplying a <javascript> element with a CDATA section, just as
+	in struts 1.1.
+	
+-->
+
+<form-validation>
+ <global>
+  <validator 
+     name="required"
+     classname="org.apache.struts.validator.FieldChecks"
+     method="validateRequired"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     msg="errors.required"/>
+     <validator 
+     name="integer"
+     classname="org.apache.struts.validator.FieldChecks"
+     method="validateInteger"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     msg="errors.integer"/>
+       <validator 
+     name="maxlength"
+     classname="org.apache.struts.validator.FieldChecks"
+     method="validateMaxLength"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     depends="required"                  
+     msg="errors.maxlength"/>
+        <validator 
+     name="minlength"
+     classname="org.apache.struts.validator.FieldChecks"
+     method="validateMinLength"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     depends="required"                  
+     msg="errors.minlength"/>
+      
+      <validator 
+     name="specialCharactes"
+     classname="com.mgmtassessment.execmap.common.util.SpecialCharactes"
+     method="validateSpecialCharactes"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     msg="error.specialChars"/>
+     
+       
+     <validator 
+     name="email"
+     classname="org.apache.struts.validator.FieldChecks"
+     method="validateEmail"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                       org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     msg="errors.email"/>
+     
+     <validator 
+     name="twoFields"
+     classname="com.mgmtassessment.execmap.common.util.FieldCompare"
+     method="validateTwoFields"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                        org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     msg="errors.match"/>
+     
+      <validator 
+     name="javascript"
+     classname="com.mgmtassessment.execmap.common.util.FieldValueCompare"
+     method="validateFieldValue"
+     methodParams="java.lang.Object,
+                       org.apache.commons.validator.ValidatorAction,
+                       org.apache.commons.validator.Field,
+                       org.apache.struts.action.ActionMessages,
+                        org.apache.commons.validator.Validator,
+                       javax.servlet.http.HttpServletRequest"
+     msg="errors.enableJavaScript"/>
+ </global>
+</form-validation>

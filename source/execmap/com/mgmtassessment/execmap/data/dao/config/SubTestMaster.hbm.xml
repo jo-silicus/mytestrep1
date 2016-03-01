@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.mgmtassessment.execmap.data.dao.types.SubTestMaster" 
+    table="sub_test_mas"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.mgmtassessment.execmap.data.dao.types.SubTestMasterKey">
+        <key-property 
+            name="triId" 
+            column="tri_id" 
+            type="java.lang.String"
+            length="4"
+        />
+        <key-property 
+            name="subTestId" 
+            column="sub_test_id" 
+            type="java.lang.String"
+            length="2"
+        />
+    </composite-id>    
+
+    <property
+        name="subTestDur"
+        type="java.math.BigDecimal"
+        column="sub_test_dur"
+        length="3"
+    />
+    <property
+        name="path"
+        type="java.lang.String"
+        column="path"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to TriMa -->
+    <many-to-one
+        name="triMa"
+	    class="com.mgmtassessment.execmap.data.dao.types.TrigramMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="tri_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+    <!-- bi-directional one-to-many association to SubTestCorrecTemp -->
+
+    <set
+        name="subTestCorrecTemps"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+            <column name="sub_test_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.SubTestCorrecTemp"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to TestSesScrDetNfu -->
+
+    <set
+        name="testSesScrDetNfus"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+            <column name="sub_test_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.TestSesScrDetNfu"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to TestSesScrDet -->
+
+    <set
+        name="testSesScrDets"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+            <column name="sub_test_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.mgmtassessment.execmap.data.dao.types.TestSesScrDet"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

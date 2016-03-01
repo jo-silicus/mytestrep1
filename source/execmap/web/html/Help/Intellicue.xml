@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE CompanyUsers>
+<CompanyUsers>
+	<UserInformation>
+		<CompanyId>2001000021</CompanyId>
+		<GroupId>GENERAL</GroupId>
+		<LoginId>gargan</LoginId>
+		<UserName>Anil Kumar Garg</UserName>
+		<Password>Password</Password>
+		<DateOfBirth>01/01/77</DateOfBirth>
+		<QualificationId>12</QualificationId>
+		<Email>anil@hpsglobal.com</Email>
+	</UserInformation>
+	<UserInformation>
+		<CompanyId>2001000022</CompanyId>
+		<GroupId>GENERAL</GroupId>
+		<LoginId>praddep</LoginId>
+		<UserName>Pradeep Chadda</UserName>
+		<Password>Password</Password>
+		<DateOfBirth>01/02/86</DateOfBirth>
+		<QualificationId>13</QualificationId>
+		<Email>pradeep.chadda@hpsglobal.com</Email>
+	</UserInformation>
+	<UserInformation>
+		<CompanyId>2001000023</CompanyId>
+		<GroupId>GENERAL</GroupId>
+		<LoginId>vineetp</LoginId>
+		<UserName>Vineet Pandey</UserName>
+		<Password>Password</Password>
+		<DateOfBirth>01/03/86</DateOfBirth>
+		<QualificationId>14</QualificationId>
+		<Email>vineet@hpsglobal.com</Email>
+	</UserInformation>
+	<UserInformation>
+		<CompanyId>2001000024</CompanyId>
+		<GroupId>GENERAL</GroupId>
+		<LoginId>yadavsh</LoginId>
+		<UserName>Shailendrra Yadav</UserName>
+		<Password>Password</Password>
+		<DateOfBirth>01/04/86</DateOfBirth>
+		<QualificationId>15</QualificationId>
+		<Email>shail@hpsglobal.com</Email>
+	</UserInformation>
+	<UserInformation>
+		<CompanyId>2001000025</CompanyId>
+		<GroupId>GENERAL</GroupId>
+		<LoginId>yadavsh</LoginId>
+		<UserName>Shailendrra Yadav</UserName>
+		<Password>Password</Password>
+		<DateOfBirth>01/05/86</DateOfBirth>
+		<QualificationId>16</QualificationId>
+		<Email>shail@hpsglobal.com</Email>
+	</UserInformation>
+	<UserInformation>
+		<CompanyId>2001000026</CompanyId>
+		<GroupId>GENERAL</GroupId>
+		<LoginId>yadavsh</LoginId>
+		<UserName>Shailendrra Yadav</UserName>
+		<Password>Password</Password>
+		<DateOfBirth>01/06/86</DateOfBirth>
+		<QualificationId>17</QualificationId>
+		<Email>shail@hpsglobal.com</Email>
+	</UserInformation>
+</CompanyUsers>
