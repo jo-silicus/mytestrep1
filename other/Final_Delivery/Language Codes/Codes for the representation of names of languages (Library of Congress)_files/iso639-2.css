@@ -1,0 +1,72 @@
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H1 {
+	FONT-SIZE: 18pt; COLOR: #006666; FONT-FAMILY: Georgia, "Times New Roman", Times, serif; TEXT-ALIGN: center
+}
+H2 {
+	FONT-SIZE: 15pt; COLOR: #666666; FONT-FAMILY: Georgia, "Times New Roman", Times, serif; TEXT-ALIGN: center
+}
+H3 {
+	FONT-SIZE: 13pt; COLOR: #339999; FONT-FAMILY: Georgia, "Times New Roman", Times, serif; TEXT-ALIGN: center
+}
+H4 {
+	FONT-SIZE: 12pt; COLOR: #666666; FONT-FAMILY: Georgia, "Times New Roman", Times, serif; TEXT-ALIGN: center
+}
+P {
+	FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD {
+	FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+LI {
+	FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+UL {
+	FONT-SIZE: 10pt; COLOR: #333333; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+PRE {
+	FONT-SIZE: 9pt; FONT-FAMILY: "Courier New", Courier, mono
+}
+.menu {
+	TEXT-ALIGN: center
+}
+.item {
+	COLOR: #000099
+}
+.itemtitle {
+	FONT-WEIGHT: bold
+}
+.description {
+	COLOR: #003300
+}
+.yellowback {
+	BACKGROUND-COLOR: #ffffcc
+}
+.small {
+	FONT-SIZE: 9pt; COLOR: #003366
+}
+.iso_639_2 {
+	
+}
+.iso_639_1 {
+	
+}
+.English_name {
+	
+}
+.French_name {
+	
+}
+.Date {
+	
+}
+.Category {
+	
+}
+.Notes {
+	
+}
+.redtext {
+	FONT-WEIGHT: bold; COLOR: #990000
+}
