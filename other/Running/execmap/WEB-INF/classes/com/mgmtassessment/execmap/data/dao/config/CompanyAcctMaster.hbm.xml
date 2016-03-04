@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.CompanyAcctMaster" 
+    table="co_acct_mas"
+    lazy="false"
+>
+
+    <id column="acct_id" name="acctId" type="java.lang.String" length="10" >
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="acctTyp"
+        type="java.lang.String"
+        column="acct_typ"
+        not-null="true"
+        length="1"
+    />
+    
+  
+    <property
+        name="acctStat"
+        type="java.lang.String"
+        column="acct_stat"
+        length="1"
+    />
+    <property
+        name="crtDt"
+        type="java.sql.Timestamp"
+        column="crt_dt"
+        not-null="true"
+        length="23"
+    />
+    <property
+        name="coName"
+        type="java.lang.String"
+        column="co_name"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="coInfo"
+        type="java.lang.String"
+        column="co_info"
+        length="50"
+    />
+    <property
+        name="cobraInfo"
+        type="java.lang.String"
+        column="cobra_Info"
+        length="50"
+    />
+    <property
+        name="coAddr1"
+        type="java.lang.String"
+        column="co_addr_1"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="coAddr2"
+        type="java.lang.String"
+        column="co_addr_2"
+        length="40"
+    />
+    <property
+        name="coCity"
+        type="java.lang.String"
+        column="co_city"
+        not-null="true"
+        length="25"
+    />
+    <property
+        name="coState"
+        type="java.lang.String"
+        column="co_state"
+        length="25"
+    />
+    <property
+        name="coCountry"
+        type="java.lang.String"
+        column="co_country"
+        not-null="true"
+        length="25"
+    />
+    <property
+        name="coZip"
+        type="java.lang.String"
+        column="co_zip"
+        length="15"
+    />
+    <property
+        name="coEmail"
+        type="java.lang.String"
+        column="co_email"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="tocName"
+        type="java.lang.String"
+        column="toc_name"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="tocEmail"
+        type="java.lang.String"
+        column="toc_email"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-one association to AcctMa -->
+    <one-to-one
+        name="acctMa"
+        class="com.perot.intellicue.data.dao.types.AcctMaster"
+        outer-join="auto"
+        constrained="true"
+    />
+    <!-- bi-directional one-to-many association to CoGrpMa -->
+
+    <set
+        name="coGrpMas"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="acct_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.CompanyGroupMaster"
+        />
+    </set>
+    <!-- bi-directional many-to-one association to RptMa -->
+    <many-to-one
+        name="rptMa"
+        class="com.perot.intellicue.data.dao.types.ReportMaster"
+        not-null="true"
+    >
+        <column name="rpt_id" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to CoUsrMa -->
+   
+
+</class>
+</hibernate-mapping>

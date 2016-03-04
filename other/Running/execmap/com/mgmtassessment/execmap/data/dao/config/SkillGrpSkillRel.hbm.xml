@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.SkillGrpSkillRel" 
+    table="skill_grp_skill_rel"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.perot.intellicue.data.dao.types.SkillGrpSkillRelKey">
+        <key-property 
+            name="skillId" 
+            column="skill_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+        <key-property 
+            name="skillGrpId" 
+            column="skill_grp_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+    </composite-id>    
+
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to SkillMa -->
+    <many-to-one
+        name="skillMa"
+	    class="com.perot.intellicue.data.dao.types.SkillMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="skill_id" />
+	</many-to-one>
+	
+    <!-- bi-directional many-to-one association to SkillGrpMa -->
+    <many-to-one
+        name="skillGrpMa"
+	    class="com.perot.intellicue.data.dao.types.SkillGroupMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="skill_grp_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

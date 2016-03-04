@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.TrigramMaster" 
+    table="tri_mas"
+    lazy="false"
+>
+
+    <id
+        name="triId"
+        type="java.lang.String"
+        column="tri_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="whatIsTst"
+        type="java.lang.String"
+        column="what_is_tst"
+        length="50"
+    />
+    <property
+        name="whatItImpc"
+        type="java.lang.String"
+        column="what_it_impc"
+        length="50"
+    />
+    <property
+        name="visIndc"
+        type="java.lang.String"
+        column="vis_indc"
+        length="1"
+    />
+    <property
+        name="triDesc"
+        type="java.lang.String"
+        column="tri_desc"
+        not-null="true"
+        length="60"
+    />
+    <property
+        name="actSeqNum"
+        type="short"
+        column="act_seq_num"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to SubTestMa -->
+
+    <set
+        name="subTestMas"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.SubTestMaster"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SkillTriRel -->
+
+    <set
+        name="skillTriRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.SkillTriRel"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to StanScrConvMat -->
+
+    <set
+        name="stanScrConvMats"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.StanScrConvMat"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SkillLvlTriRel -->
+
+    <set
+        name="skillLvlTriRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="tri_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.SkillLvlTriRel"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.SkillGroupMaster" 
+    table="skill_grp_mas"
+    lazy="false"
+>
+
+    <id
+        name="skillGrpId"
+        type="java.lang.Short"
+        column="skill_grp_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="skillGrpDesc"
+        type="java.lang.String"
+        column="skill_grp_desc"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to SkillGrpCondRel -->
+
+    <set
+        name="skillGrpCondRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_grp_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.SkillGrpCondRel"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to SkillGrpSkillRel -->
+
+    <set
+        name="skillGrpSkillRels"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="skill_grp_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.SkillGrpSkillRel"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

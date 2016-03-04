@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/cmsds</value>
+		</property>
+	</bean>
+	
+	<bean id="hibernateSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	<property name="mappingResources">
+			<list>
+                <value>com/mgmtassessment/execmap/data/dao/config/AbilityMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/AbilitySkillRel.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/AcctMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/ActvRolMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/CompanyAcctMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/CompanyGroupMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/CompanyUserMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/ExecmapSysMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/ReportMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/RptParaDet.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/RptParaMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SkillGroupMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SkillGrpCondRel.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SkillGrpSkillRel.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SkillLvlTriRel.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SkillMaster.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SkillTriRel.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/StanScrConvMat.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SubTestCorrecTemp.hbm.xml</value>
+                <value>com/mgmtassessment/execmap/data/dao/config/SubTestMaster.hbm.xml</value>
+                 <value>com/mgmtassessment/execmap/data/dao/config/TestSessionMaster.hbm.xml</value>
+                  <value>com/mgmtassessment/execmap/data/dao/config/TestSesScrDet.hbm.xml</value>
+                 <value>com/mgmtassessment/execmap/data/dao/config/TestSesScrDetNfu.hbm.xml</value>   
+                 <value>com/mgmtassessment/execmap/data/dao/config/TestSesSkillScrDet.hbm.xml</value>
+                  <value>com/mgmtassessment/execmap/data/dao/config/TrigramMaster.hbm.xml</value>
+                
+                </list>
+	 </property>
+	 <property name="hibernateProperties">
+		        <props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.SQLServerDialect
+				</prop>
+				<prop key="hibernate.default_schema">Execmap.SQLsysintcue3180</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">
+					true
+				</prop>
+				<prop key="hibernate.default_batch_fetch_size">1</prop>
+			</props>
+		</property>
+	 </bean>
+	 
+	 	<bean id="myHibernateInterceptor"
+		class="org.springframework.orm.hibernate3.HibernateInterceptor">
+		<property name="sessionFactory">
+			<ref bean="hibernateSessionFactory" />
+		</property>
+	</bean>
+ 
+	 
+	 <bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="hibernateSessionFactory" />
+		</property>
+	</bean>
+	 
+	 	<bean id="hqlSearch"
+		class="com.perot.intellicue.common.util.search.HQLSearch">
+		<property name="sessionFactory" ref="hibernateSessionFactory"/>
+	</bean>
+	
+	<bean id="mailWriterManager"
+		class="com.perot.intellicue.business.impl.mail.MailWriterFacadeImpl">
+			  <property name="mailSender"><ref bean="mailSender"/></property>
+ 			  <property name="message"><ref bean="mailMessage"/></property>
+ 			  <property name="langHelper"><ref bean="langHelper"/></property>
+	</bean>
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+	<property name="locations"> 
+	<list> 
+	<value>WEB-INF/classes/com/mgmtassessment/execmap/resources/mail.properties</value> 
+	</list> 
+	</property> 
+	</bean> 
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host"><value>${mailSender.host}</value></property> 
+	<property name="username"><value>${mailSender.username}</value></property> 
+	<property name="password"><value>${mailSender.password}</value></property>
+	<property name="javaMailProperties">
+     <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">15000</prop> <!-- milliseconds -->
+     </props>
+    </property>
+	
+	</bean>
+
+	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">
+ 	<property name="from"><value>ManagementAssessmentPartners</value></property>
+ 	</bean>
+			 
+	<bean id="myUserAccountDAO"
+		class="com.perot.intellicue.data.daoimpl.UserAccountDAOImpl">
+			<property name="sessionFactory" ref="hibernateSessionFactory"/>
+	</bean>
+	
+			 
+  
+	 <!---  Transaction Manager for user  -->
+	
+	<bean id="userManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="hibernateTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="myUserManagerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+			<prop key="save*">PROPAGATION_REQUIRED,-DataCreateException</prop>
+			<prop key="create*">PROPAGATION_REQUIRED</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-DataSaveException</prop>
+            <prop key="enableDisable*">PROPAGATION_REQUIRED,-DataSaveException</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-DataDeleteException</prop>
+            <prop key="move*">PROPAGATION_REQUIRED,-DataMoveException</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="myUserManagerTarget"
+		class="com.perot.intellicue.business.impl.user.UserManagerFacadeImpl">
+		<property name="userAccountDAO">
+			<ref bean="myUserAccountDAOTarget" />
+		</property>
+		<property name="companyAccountDAO">
+			<ref bean="myCompanyManagerDAOTarget" />
+		</property>
+		<property name="groupAccountDAO">
+			<ref bean="myGroupAccountDAOTarget" />
+		</property>
+		<property name="mailer">
+             <ref bean="mailWriterManager" />
+       </property>
+	</bean>
+	
+	<bean id="myUserAccountDAOTarget"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.perot.intellicue.data.daoapi.UserAccountDAO</value>
+		</property>
+		<property name="target">
+			<ref bean="myUserAccountDAO" />
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>myHibernateInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+		<!--  *************************************  -->	
+	<!---  Transaction Manager for Company  -->
+	
+	
+	<bean id="companyManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="hibernateTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="myCompanyManagerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+			<prop key="save*">PROPAGATION_REQUIRED,-DataCreateException</prop>
+			<prop key="update*">PROPAGATION_REQUIRED,-DataSaveException</prop>
+			<prop key="delete*">PROPAGATION_REQUIRED,-DataDeleteException</prop>
+			<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+			<prop key="show*">PROPAGATION_REQUIRED,readOnly</prop>
+			<prop key="view*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="myCompanyManagerTarget"
+		class="com.perot.intellicue.business.impl.company.CompanyManagerFacadeImpl">
+		<property name="companyAccountDAO">
+			<ref bean="myCompanyManagerDAOTarget" />
+		</property>
+		<property name="hqlsearch">
+			<ref bean="hqlSearch" />
+		</property>
+		<property name="userAccountDAO">
+			<ref bean="myUserAccountDAOTarget" />
+		</property>
+		<property name="mailer">
+
+<ref bean="mailWriterManager" />
+
+</property>
+	</bean>
+	
+		<bean id="myCompanyManagerDAOTarget"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.perot.intellicue.data.daoapi.CompanyAccountDAO</value>
+		</property>
+		<property name="target">
+			<ref bean="myCompanyAccountDAO" />
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>myHibernateInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+			 
+	<bean id="myCompanyAccountDAO"
+		class="com.perot.intellicue.data.daoimpl.CompanyAccountDAOImpl">
+			<property name="sessionFactory" ref="hibernateSessionFactory"/>
+			<property name="userAccountDAO">
+			<ref bean="myUserAccountDAO" />
+		</property>
+	</bean>
+	
+
+	
+<!--  *************************************  -->	
+	
+	<bean id="proxyService"
+		class="com.mgmtassessment.execmap.common.framework.webapp.ServiceProxyImpl">
+	</bean>
+	 
+	<!-- 
+	 <bean id="companyManager"
+		class="com.perot.intellicue.business.impl.company.CompanyManagerFacadeImpl">
+	</bean>
+	
+	-->
+
+<!---  Transaction Manager for group  -->
+	
+<bean id="groupManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="hibernateTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="myGroupManagerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+			<prop key="save*">PROPAGATION_REQUIRED,-DataCreateException</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-DataSaveException</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-DataDeleteException,-DataNotFoundException</prop>
+
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="myGroupManagerTarget"
+		class="com.perot.intellicue.business.impl.group.GroupManagerFacadeImpl">
+		<property name="groupAccountDAO">
+			<ref bean="myGroupAccountDAOTarget" />
+		</property>
+		<property name="companyAccountDAO">
+			<ref bean="myCompanyManagerDAOTarget" />
+		</property>
+		<property name="userAccountDAO">
+			<ref bean="myUserAccountDAOTarget" />
+		</property>
+		<property name="mailer">
+             <ref bean="mailWriterManager" />
+       </property>
+       <property name="hqlSearch">
+			<ref bean="hqlSearch" />
+		</property>
+	</bean>
+	
+		<bean id="myGroupAccountDAOTarget"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.perot.intellicue.data.daoapi.GroupAccountDAO</value>
+		</property>
+		<property name="target">
+			<ref bean="myGroupAccountDAO" />
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>myHibernateInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+			 
+	<bean id="myGroupAccountDAO"
+		class="com.perot.intellicue.data.daoimpl.GroupAccountDAOImpl">
+			<property name="sessionFactory" ref="hibernateSessionFactory"/>
+	</bean>
+
+	<!--  *************************************  -->	
+	
+	
+	
+	
+	
+	
+	<!---  Transaction Manager for assessment  -->
+	
+	<bean id="RawMaxScore"
+		class="com.perot.intellicue.data.daoimpl.RawMaxScoreImpl">
+	</bean>
+	
+	<bean id="FetchCorrectAnswerDAO"
+		class="com.perot.intellicue.data.daoimpl.FetchCorrectAnswerDAOImpl">
+		<property name="sessionFactory"> <ref bean="hibernateSessionFactory"/></property>
+	</bean>
+	
+	<bean id="StanineToSkillScore"
+		class="com.perot.intellicue.business.impl.assessment.StanineToSkillScoreImpl">
+		<property name="stanineToSkillScoreDAO"> <ref bean="StanineToSkillScoreDAO"/></property>
+	</bean>
+	
+	<bean id="StanineToSkillScoreDAO"
+		class="com.perot.intellicue.data.daoimpl.StanineToSkillScoreDAOImpl">
+		<property name="sessionFactory"> <ref bean="hibernateSessionFactory"/></property>
+	</bean>
+	
+	
+	<bean id="assessmentManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="hibernateTransactionManager"/>
+		</property>
+		<property name="target">
+			<ref bean="myassessmentManagerTarget"/>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+			<prop key="save*">PROPAGATION_REQUIRED</prop>	
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="myassessmentManagerTarget"
+		class="com.perot.intellicue.business.impl.assessment.AssessmentManagerFacadeImpl">
+		<property name="assessmentdao">
+			<ref bean="myassessmentDAOTarget" />
+		</property>
+		<property name="hqlsearch">
+			<ref bean="hqlSearch" />
+		</property>
+			</bean>
+	
+		<bean id="myassessmentDAOTarget"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>com.perot.intellicue.data.daoapi.AssessmentDAO</value>
+		</property>
+		<property name="target">
+			<ref bean="myassessmentDAO" />
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>myHibernateInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+			 
+	<bean id="myassessmentDAO"
+		class="com.perot.intellicue.data.daoimpl.AssessmentDAOImpl">
+			<property name="sessionFactory"> <ref bean="hibernateSessionFactory"/></property>
+			<property name="hqlsearch">
+			<ref bean="hqlSearch" />
+		</property>
+				</bean>
+	<!--  *************************************  -->	
+	
+	
+	
+	
+	<bean id="langHelper"
+		class="com.perot.intellicue.common.util.TranslateHelperImpl">
+	</bean>
+
+    <bean id="EMS"
+		class="com.perot.intellicue.business.impl.assessment.EmsAssessmentPrepareImpl">
+	</bean>
+	
+   	<bean id="CFS"
+		class="com.perot.intellicue.business.impl.assessment.CfsAssessmentPrepareImpl">
+	</bean>
+	
+	 <bean id="CMI"
+		class="com.perot.intellicue.business.impl.assessment.CmiAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="CSR"
+		class="com.perot.intellicue.business.impl.assessment.CsrAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="NST"
+		class="com.perot.intellicue.business.impl.assessment.NstAssessmentPrepareImpl">
+	</bean>
+
+	<bean id="NMT"
+		class="com.perot.intellicue.business.impl.assessment.NmtAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="ESS"
+		class="com.perot.intellicue.business.impl.assessment.EssAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="EFC"
+		class="com.perot.intellicue.business.impl.assessment.EfcAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="MEM"
+		class="com.perot.intellicue.business.impl.assessment.MemAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="MEMWS"
+		class="com.perot.intellicue.business.impl.assessment.MemwsAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="CMS"
+		class="com.perot.intellicue.business.impl.assessment.CmsAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="ESC"
+		class="com.perot.intellicue.business.impl.assessment.EscAssessmentPrepareImpl">
+	</bean>
+
+	<bean id="DMS"
+		class="com.perot.intellicue.business.impl.assessment.DmsAssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="DMS1"
+		class="com.perot.intellicue.business.impl.assessment.Dms1AssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="DMS2"
+		class="com.perot.intellicue.business.impl.assessment.Dms2AssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="DMS3"
+		class="com.perot.intellicue.business.impl.assessment.Dms3AssessmentPrepareImpl">
+	</bean>
+	
+	<bean id="NFU"
+		class="com.perot.intellicue.business.impl.assessment.NfuAssessmentPrepareImpl">
+	</bean>
+
+	<!--  *************************************  -->	
+	
+		<!-- Transaction Manager for Login -->
+	
+		<bean id="loginManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="hibernateTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="myLoginManagerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+			<prop key="update*">PROPAGATION_REQUIRED,-DataSaveException</prop>
+			<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>	
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="myLoginManagerTarget"
+		class="com.perot.intellicue.business.impl.login.LoginManagerFacadeImpl">
+		<property name="loginDAO">
+			<ref bean="myLoginDAO" />
+		</property>
+		<property name="mailer">
+		<ref bean="mailWriterManager" />
+		</property>
+	</bean>
+	
+		
+	
+			 
+	<bean id="myLoginDAO"
+		class="com.perot.intellicue.data.daoimpl.LoginDAOImpl">
+			<property name="sessionFactory" ref="hibernateSessionFactory"/>
+			<property name="hqlsearch">
+			<ref bean="hqlSearch" />
+			</property>
+	</bean>
+	
+	
+	<!--  ********************global setting manager***************** -->
+	<bean id="globalSettingManager"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="hibernateTransactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="myGlobalSettingManagerTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+			<prop key="save*">PROPAGATION_REQUIRED,-DataSaveException</prop>
+			<prop key="get*">PROPAGATION_REQUIRED,-DataNotFoundException</prop>	
+			<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="myGlobalSettingManagerTarget"
+		class="com.perot.intellicue.business.impl.globalsettings.GlobalSettingManagerFacadeImpl">
+		<property name="globalSettingDAO">
+			<ref bean="myGlobalSettingDAO" />
+		</property>
+		<property name="hqlsearch">
+			<ref bean="hqlSearch" />
+		</property>
+	</bean>
+	
+	
+	<bean id="myGlobalSettingDAO"
+		class="com.perot.intellicue.data.daoimpl.GlobalSettingDaoImpl">
+			<property name="sessionFactory" ref="hibernateSessionFactory"/>
+	</bean>
+	
+<!--*************************************************************** -->
+    
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	     <property name="dataSource"><ref bean="dataSource"/></property>
+	</bean>
+	
+	<bean id="reportManager" class="com.perot.intellicue.business.impl.report.ReportManagerFacadeImpl">
+           	<property name="reportDAO"><ref bean="reportDAO"/></property>
+	</bean>
+		
+	<bean id="reportDAO" class="com.perot.intellicue.data.daoimpl.ReportDAOImpl">
+	     	<property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
+	</bean>
+	
+	<bean id="paraGen" class="com.perot.intellicue.brules.rule.impl.ParaGenImpl">
+			<property name="ruleExec"><ref bean="ruleExec"/></property>
+			<property name="ruleExecSummary"><ref bean="ruleExecSummary"/></property>
+			<property name="ruleLeadership"><ref bean="ruleLeadership"/></property>
+			<property name="reportDAO"><ref bean="reportDAO"/></property>
+			<property name="langHelper"><ref bean="langHelper"/></property>
+	</bean>
+	<bean id="ruleExec" class="com.perot.intellicue.brules.rule.RuleExec">
+			<property name="reportDAO"><ref bean="reportDAO"/></property>
+	</bean>
+	
+	<bean id="ruleExecSummary" class="com.perot.intellicue.brules.rule.RuleExecSummary">
+			<property name="reportDAO"><ref bean="reportDAO"/></property>
+	</bean>
+	
+	<bean id="ruleLeadership" class="com.perot.intellicue.brules.rule.RuleLeadership">
+			<property name="reportDAO"><ref bean="reportDAO"/></property>
+	</bean>
+	
+	
+<!--  *************************************  -->	
+<bean id="loginManagementManager" class="com.perot.intellicue.business.impl.loginmanagement.LoginManagementFacadeImpl">
+           <property name="userAccountDAO"><ref bean="myUserAccountDAOTarget"/></property>
+           <property name="hqlSearch"><ref bean="hqlSearch"/></property>
+	</bean>
+<!--  *************************************  -->	
+
+</beans>

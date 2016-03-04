@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.ActvRolMaster" 
+    table="actv_rol_mas"
+    lazy="false"
+>
+
+    <id
+        name="actvRolId"
+        type="java.lang.Short"
+        column="actv_rol_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="rolDesc"
+        type="java.lang.String"
+        column="rol_desc"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to CoUsrMa -->
+
+    <set
+        name="coUsrMas"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="actv_rol_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.CompanyUserMaster"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

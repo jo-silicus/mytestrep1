@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.StanScrConvMat" 
+    table="stan_scr_conv_mat"
+    lazy="false"
+>
+
+    <id
+        name="stanScrConvMatId"
+        type="java.lang.Integer"
+        column="stan_scr_conv_mat_id"
+    >
+    
+        <generator class="assigned" />
+    </id>
+
+    <property
+        name="rawScrLwrLmt"
+        type="java.math.BigDecimal"
+        column="raw_scr_lwr_lmt"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="rawScrUprLmt"
+        type="java.math.BigDecimal"
+        column="raw_scr_upr_lmt"
+        length="5"
+    />
+    <property
+        name="rawScrLwrLmtMem"
+        type="java.lang.Long"
+        column="raw_scr_lwr_lmt_mem"
+        length="18"
+    />
+    <property
+        name="rawScrUprLmtMem"
+        type="java.lang.Long"
+        column="raw_scr_upr_lmt_mem"
+        length="18"
+    />
+    <property
+        name="stanScr"
+        type="java.math.BigDecimal"
+        column="stan_scr"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to TriMa -->
+    <many-to-one
+        name="triMa"
+        class="com.perot.intellicue.data.dao.types.TrigramMaster"
+        not-null="true"
+    >
+        <column name="tri_id" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

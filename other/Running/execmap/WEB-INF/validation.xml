@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+
+        <!-- An example global constant
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^\d{5}\d*$</constant-value>
+        </constant>
+        end example-->
+
+    </global>
+
+    <formset>
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+        
+         <form name="GroupAccountForm">
+            <field
+                property="companyAccountID"
+                depends="required">
+                    <arg key="label.AcctId" bundle="execmap"/>
+            </field>
+            
+             <field
+                property="groupID"
+                depends="required,specialCharactes">
+                    <arg key="admineditgroup.frmcogrpup.grpid.value" bundle="execmap"/>
+            </field>
+            
+             <field
+                property="groupManagerEmail"
+                depends="required,email">
+                <arg key="generic.email" bundle="execmap"/>
+            </field>
+            
+            <field
+                property="groupManagerUserID"
+                depends="required,specialCharactes">
+                    <arg key="generic.userid" bundle="execmap"/>
+            </field>
+            
+            <field
+                property="groupManagerPassword"
+                depends="required,twoFields">
+                    <arg position="0" key="generic.pwd" bundle="execmap"/>
+                    <arg position="1" key="generic.retype_pwd" bundle="execmap"/>
+                     <var>
+                 <var-name>secondProperty</var-name>
+                 <var-value>groupManagerRetypePassword</var-value>
+               </var>
+            </field>
+            
+             <field
+                property="groupManagerFirstName"
+                depends="required">
+                    <arg key="generic.firstname" bundle="execmap"/>
+            </field>
+            
+            <field
+                property="groupManagerLastName"
+                depends="required">
+                    <arg key="generic.lastname" bundle="execmap"/>
+            </field>
+           </form>
+        
+        <form name="UserAccountForm">
+            <field
+                property="userCompanyAccountID"
+                depends="required">
+                    <arg key="label.AcctId" bundle="execmap"/>
+            </field>
+            
+             <field
+                property="userGroupID"
+                depends="required,specialCharactes">
+                    <arg key="admineditgroup.frmcogrpup.grpid.value" bundle="execmap"/>
+            </field>
+            
+             <field
+                property="userEmail"
+                depends="required,email">
+                    <arg key="generic.email" bundle="execmap"/>
+            </field>
+            
+            <field
+                property="userID"
+                depends="required,specialCharactes">
+                    <arg key="generic.userid" bundle="execmap"/>
+            </field>
+             
+      
+            <field
+                property="userPassword"
+                depends="required,twoFields">
+                   <arg position="0" key="generic.pwd" bundle="execmap"/>
+                    <arg position="1" key="generic.retype_pwd" bundle="execmap"/>
+                    <var>
+                 <var-name>secondProperty</var-name>
+                 <var-value>userRetypePassword</var-value>
+               </var>
+            </field>
+            
+                      
+             <field
+                property="userFirstName"
+                depends="required">
+                    <arg key="generic.firstname" bundle="execmap"/>
+            </field>
+            
+            <field
+                property="userLastName"
+                depends="required">
+                    <arg key="generic.lastname" bundle="execmap"/>
+            </field>
+           
+           </form>
+        
+        <form name="CompanyAccountForm">
+            <field
+                property="companyName"
+                depends="required">
+                    <arg key="admineditcompany.frmcoacced.coname.value" bundle="execmap"/>
+            </field>
+            
+             <field
+                property="companyInfo"
+                depends="required">
+                    <arg key="adminaddcompany.frmcoacccr.txt_co_info"  bundle="execmap"/>
+            </field>
+            
+             <field
+                property="companyAddr1"
+                depends="required">
+                    <arg key="addminaddcompany.frmcoacccr.company_add"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyCity"
+                depends="required">
+                    <arg key="generic.city"  bundle="execmap" />
+            </field>
+            
+            <field
+                property="companyState"
+                depends="required">
+                    <arg key="generic.state"  bundle="execmap"/>
+            </field>
+            
+             <field
+                property="companyZip"
+                depends="required">
+                    <arg key="generic.zip"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyCtry"
+                depends="required">
+                    <arg key="generic.country"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyEmail"
+                depends="required">
+                    <arg key="label.coacctma.coEmail" bundle="execmap" />
+            </field>
+            
+            <field
+                property="companyManagerFirstName"
+                depends="required">
+                    <arg key="generic.firstname"  bundle="execmap"/>
+            </field>
+            <field
+                property="companyManagerLastName"
+                depends="required">
+                    <arg key="generic.lastname"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyMgrUserId"
+                depends="required">
+                    <arg key="generic.userid"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyMgrPasswd"
+                depends="required">
+                    <arg key="generic.pwd"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="reminderPhrase"
+                depends="required">
+                    <arg key="generic.retype_pwd"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyTechContactName"
+                depends="required">
+                    <arg key="admineditcompany.frmcoacced.technical.name"  bundle="execmap"/>
+            </field>
+            
+            <field
+                property="companyTechContactEmail"
+                depends="required">
+                    <arg key="admineditcompany.frmcoacced.technical.email"  bundle="execmap"/>
+            </field>
+         </form>
+        
+         <form name="ChangePasswordForm">
+            <field
+                property="acctid"
+                depends="required">
+                    <arg key="label.login.accountid"  bundle="execmap"/>
+            </field>
+            <field
+                property="userid"
+                depends="required">
+                    <arg key="generic.userid"  bundle="execmap"/>
+            </field>
+           <field
+                property="newPassword"
+                depends="required">
+                    
+            </field>
+
+            <field
+                property="retypePassword"
+                depends="required">
+                    <arg key="generic.retype_pwd"  bundle="execmap"/>
+                    
+            </field>
+            <field
+                property="password"
+                depends="required">
+                    <arg key="label.login.oldpassword" bundle="execmap"/>
+                    
+            </field>
+        </form>
+        
+        
+        <form name="PasswordReminderForm">
+            <field
+                property="acctid"
+                depends="required">
+                    <arg key="label.login.accountid" bundle="execmap"/>
+            </field>
+            <field
+                property="userid"
+                depends="required">
+                    <arg key="generic.userid" bundle="execmap"/>
+            </field>
+          	<field
+                property="email"
+                depends="required">
+                    <arg key="label.coacctma.coEmail" bundle="execmap"/>
+            </field>
+          	
+        </form>
+       
+	<form name="GlobalSettingsForm">
+        <field
+                property="intlcUsrId"
+                depends="required">
+                    <arg key="globalsettings.global.manager.usrid" bundle="execmap"/>
+            </field>
+        <field
+                property="intlcPasswd"
+                depends="required">
+                    <arg key="globalsettings.global.manager.password" bundle="execmap"/>
+            </field>
+         <field
+                property="emailServerName"
+                depends="required">
+                    <arg key="globalsettings.global.exchange.server.name" bundle="execmap"/>
+            </field>
+         <field
+                property="emailServerPort"
+                depends="required,integer">
+                    <arg key="globalsettings.global.exchange.server.portno" bundle="execmap"/>
+                    
+            </field>
+         <field
+                property="emailServerUserid"
+                depends="required">
+                    <arg key="globalsettings.global.exchange.server.usrid" bundle="execmap"/>
+            </field> 
+              
+         <field
+                property="emailServerPassword"
+                depends="required">
+                    <arg key="globalsettings.global.exchange.server.password" bundle="execmap"/>
+            </field>   
+            
+           </form>     
+           <form name="LoginForm">
+        <field
+                property="acctid"
+                depends="required,integer,minlength">
+                    <arg key="label.AcctId" bundle="execmap"/>
+                    <arg1 name="minlength" resource="false" key="${var:minlength}"/>
+                    <var>
+                       <var-name>minlength</var-name>
+                       <var-value>10</var-value>
+                    </var>
+                                       
+            </field>
+            <field
+                property="userid"
+                depends="required">
+                    <arg key="generic.userid" bundle="execmap"/>
+            </field>
+            <field
+                property="password"
+                depends="required,maxlength">
+                    <arg key="generic.pwd" bundle="execmap"/>
+                    <arg1 name="maxlength" resource="false" key="${var:maxlength}"/>
+                    <var>
+                       <var-name>maxlength</var-name>
+                       <var-value>8</var-value>
+                    </var>
+            </field>
+             <field
+                property="enableScript"
+                depends="javascript">
+                <var>
+                 <var-name>value</var-name>
+                 <var-value>Enabled</var-value>
+               </var>
+            </field>
+            </form>
+        
+
+    </formset>
+
+    <!-- An example formset for another locale -->
+    <formset language="fr">
+
+        <constant>
+            <constant-name>postalCode</constant-name>
+            <constant-value>^[0-9a-zA-Z]*$</constant-value>
+        </constant>
+
+        <!-- An example form -->
+        <form name="logonForm">
+            <field
+                property="username"
+                depends="required">
+                    <arg key="logonForm.username"/>
+            </field>
+            <field
+                property="password"
+                depends="required,mask">
+                    <arg key="logonForm.password"/>
+                    <var>
+                        <var-name>mask</var-name>
+                        <var-value>^[0-9a-zA-Z]*$</var-value>
+                    </var>
+            </field>
+        </form>
+
+   </formset>
+
+</form-validation>

@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.CompanyGroupMaster" 
+    table="co_grp_mas"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.perot.intellicue.data.dao.types.CompanyGroupMasterKey">
+        <key-property 
+            name="acctId" 
+            column="acct_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <key-property 
+            name="grpId" 
+            column="grp_id" 
+            type="java.lang.String"
+            length="15"
+        />
+    </composite-id>    
+
+
+    <property
+        name="grpInfo"
+        type="java.lang.String"
+        column="grp_info"
+        length="40"
+    />
+    <property
+        name="grpStat"
+        type="java.lang.String"
+        column="grp_stat"
+        not-null="true"
+        length="1"
+    />
+    <property
+        name="grpEmail"
+        type="java.lang.String"
+        column="grp_email"
+        length="40"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to CoAcctMa -->
+    <many-to-one
+        name="coAcctMa"
+	    class="com.perot.intellicue.data.dao.types.CompanyAcctMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="acct_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+    <!-- bi-directional one-to-many association to CoUsrMa -->
+
+    <set
+        name="coUsrMas"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="acct_id" />
+            <column name="grp_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.CompanyUserMaster"
+        />
+    </set>
+   
+</class>
+</hibernate-mapping>

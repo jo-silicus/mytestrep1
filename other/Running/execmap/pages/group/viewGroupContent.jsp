@@ -1,0 +1,133 @@
+<%-- 
+  - Author(s): Rahul 
+  - Date: 11th July 2006
+  - Copyright Notice: Management Assessment Partners (MAP) AG 
+  - All Rights Reserved.
+  - @(#)
+  - Description: 
+  - This page is the content part of viewGroup.jsp which
+  - shows the interface to edit a group record.
+  -
+  --%>
+<%@ page language="java" %>
+<%@ page import="com.perot.intellicue.common.util.webapp.*" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic" %>
+<%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles" %>
+
+<% 
+	UserContext userContext= (UserContext)request.getSession(false).getAttribute("userContext");
+	String roleId= userContext.getUserInfo().getActivityRoleID().toString().trim();
+	request.setAttribute("roleId",roleId); 
+%>
+<p align="left">&nbsp;</p>
+
+<bean:define id="uriAccountID" name="GroupAccountForm" property="companyAccountID"/>
+
+<table width="978" bordercolor="#FFFFFF" bgcolor="#023F70" align="left">
+  <tr>
+    <td width="797" ><div align="left" class="style1">
+   <a href='/execmap/admin.jsp' class='style1' >
+   <bean:message bundle="execmap" key="home.title" />
+    </a>
+    <logic:lessThan name="roleId" value="3">
+    ><a href='/execmap/CompanySearchAction.do' class='style1' >
+   <bean:message bundle="execmap" key="adminoptions.account_management" />
+   </a>
+   
+   ><a href="/execmap/SearchGroup.do?companyAccountID=<%=uriAccountID%>" class='style1' >
+  <bean:message bundle="execmap" key="adminoptions.groupmanagement" />
+   </a>
+   </logic:lessThan>
+   <logic:equal name="roleId" value="3">
+   ><a href='/execmap/GroupManagement.do' class='style1' >
+   <bean:message bundle="execmap" key="adminoptions.groupmanagement" />
+   </a>
+   </logic:equal>
+   ><bean:message bundle="execmap" key="generic.View_Group" />
+   </td>
+   <td >
+   <div align="right" class="style1">
+    <a href="javascript:callHelp();" class='style1'><bean:message bundle="execmap" key="generic.help"/> </a>
+    </div>
+   </td>
+  </tr>
+</table>
+
+<html:form  action="/viewGroupAction">
+ <FONT COLOR="#FF0000"><html:errors/></font>
+<logic:messagesPresent message="true">
+<html:messages message="true" id="msg" bundle="execmap">
+<FONT COLOR="#FF0000"><bean:write name="msg" ignore="true"/><br></font>
+</html:messages>
+
+</logic:messagesPresent>
+<p align="left">&nbsp;</p>
+<table width="978" border="0">
+  <tr>
+    <td width="227" bgcolor="#023F70"><span class="style1"><bean:message bundle="execmap" key="admineditgroup.frmcogrpup.grpinfo.value" /> </span></td>
+    <td width="571" bgcolor="#023F70">&nbsp;</td>
+  </tr>
+</table>
+<html:hidden name="GroupAccountForm" property="companyAccountID"/>
+
+
+<table width="750" border="0">
+  <tr>
+    <td><div align="right"><span class="style6"><bean:message bundle="execmap" key="admineditgroup.frmcogrpup.grpid.value" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupID" /></span></td>
+    <td><div align="right"><span class="style6"><bean:message bundle="execmap" key="adminaddgroup.frmcogrpcr.txt_grp_info" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupInformation" /></span></td>
+  </tr>
+  <tr>
+    <td><div align="right"><span class="style6"><bean:message bundle="execmap" key="generic.status" />:</span></div></td>
+    <td><span class="style6">
+    <logic:equal name="GroupAccountForm" property="groupStatus" value="D">
+    <bean:message bundle="execmap" key="adminedituser.frmcomusrcr.status.disabled" />
+    </logic:equal>
+    <logic:equal name="GroupAccountForm" property="groupStatus" value="E">
+    <bean:message bundle="execmap" key="adminedituser.frmcomusrcr.status.enabled" />
+    </logic:equal>
+    </span></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<table width="978" border="0">
+  <tr>
+    <td width="231" bgcolor="#023F70"><span class="style1"><bean:message bundle="execmap" key="admineditgroup.frmcogrpup.grpmanagerinfo.value" /></span></td>
+    <td width="567" bgcolor="#023F70">&nbsp;</td>
+  </tr>
+</table>
+
+
+
+<table width="750" border="0">
+  <tr>
+    <td><div align="right"><span class="style6"><div align="right"><bean:message bundle="execmap" key="generic.firstname" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupManagerFirstName" /></span></td>
+    <td><div align="right"><span class="style6"><bean:message bundle="execmap" key="generic.lastname" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupManagerLastName" /></span></td>
+  </tr>
+  <tr>
+    <td><div align="right"><span class="style6"><div align="right"><bean:message bundle="execmap" key="generic.userid" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupManagerUserID" /></span></td>
+    <td><div align="right"><span class="style6"><bean:message bundle="execmap" key="generic.pwd" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupManagerPassword" /></span></td>
+  </tr>
+  <tr>
+    <td><div align="right"><span class="style6"><div align="right"><bean:message bundle="execmap" key="generic.email" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupManagerEmail" /></span></td>
+    <td><div align="right"><span class="style6"><bean:message bundle="execmap" key="adminaddcompany.remindphrase.label" />:</span></div></td>
+    <td><span class="style6"><bean:write name="GroupAccountForm" property="groupManagerReminderPhrase" /></span></td>
+  </tr>
+</table>
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</html:form>

@@ -1,0 +1,1434 @@
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+ <!-- ======================== Introduction ==============================  -->
+  <!-- This document defines the common definitions for struts-config.xml   -->
+  <!-- *ExecMap* web application, loaded into this instance of Tomcat.      -->
+
+  <!--  TODO:  To split this file into module specific  struts-config       -->
+
+  <!-- @author : Ashim Das                                                  -->
+  <!-- @date   : 4/07/2006                                                  -->
+  <!-- Change History :                                                     -->
+  <!-- Description                 Reference         Changed By   Date      -->   
+  <!--                                                                      -->
+  
+  <!-- ================== Definitions ====================================  -->
+
+
+
+<!-- =========== Form Bean Definitions =============================== -->
+
+<form-beans>
+
+<form-bean 
+  name="UserSearchForm" 
+  type="com.mgmtassessment.execmap.webapp.main.user.form.UserSearchForm" />
+  
+<form-bean 
+  name="LanguageForm" 
+  type="com.mgmtassessment.execmap.webapp.main.login.form.LanguageForm" />
+
+<form-bean 
+  name="LoginForm" 
+  type="com.mgmtassessment.execmap.webapp.main.login.form.LoginForm" />
+  
+<form-bean 
+  name="ChangePasswordForm" 
+  type="com.mgmtassessment.execmap.webapp.main.login.form.ChangePasswordForm" />  
+  
+<form-bean 
+  name="PasswordReminderForm" 
+  type="com.mgmtassessment.execmap.webapp.main.login.form.PasswordReminderForm" />  
+
+<form-bean 
+  name="CompanyAccountForm" 
+  type="com.mgmtassessment.execmap.webapp.main.company.form.CompanyAccountForm" />
+  
+<form-bean 
+  name="UploadForm" 
+  type="com.mgmtassessment.execmap.webapp.main.company.form.UploadForm" />
+  
+<form-bean 
+  name="EnableCompaniesListForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.EnableCompaniesListForm" />
+  
+<form-bean 
+  name="UserAccountForm" 
+  type="com.mgmtassessment.execmap.webapp.main.user.form.UserAccountForm" />  
+  
+<form-bean 
+  name="UserCreationForm" 
+  type="com.mgmtassessment.execmap.webapp.main.user.form.UserCreationForm" /> 
+
+<form-bean 
+  name="GroupAccountForm" 
+  type="com.mgmtassessment.execmap.webapp.main.group.form.GroupAccountForm" />
+  
+<form-bean 
+  name="GeneralReportsForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.GeneralReportsForm" />
+
+<form-bean 
+  name="AssessmentSummaryForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.AssessmentSummaryForm" />
+  
+<form-bean 
+  name="IndividualSummaryReportForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.IndividualSummaryReportForm" />
+
+  <form-bean 
+  name="AssessmentForm" 
+  type="com.mgmtassessment.execmap.webapp.main.assessment.form.AssessmentForm" />
+  
+    <form-bean 
+  name="AssessmentMultiForm" 
+  type="com.mgmtassessment.execmap.webapp.main.assessment.form.AssessmentMultiForm" />
+
+<form-bean 
+  name="AssessmentInstForm" 
+  type="com.mgmtassessment.execmap.webapp.main.assessment.form.AssessmentInstForm" />
+
+<form-bean 
+  name="GroupManagementForm" 
+  type="com.mgmtassessment.execmap.webapp.main.group.form.GroupManagementForm" />
+
+<form-bean 
+  name="DeleteDisableGroupForm" 
+  type="com.mgmtassessment.execmap.webapp.main.group.form.DeleteDisableGroupForm" />
+
+<form-bean 
+  name="ShowDisabledUsersForm" 
+  type="com.mgmtassessment.execmap.webapp.main.user.form.ShowDisabledUsersForm" />
+  
+<form-bean 
+  name="SelectUserForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.SelectUserForm" />
+  
+<form-bean 
+  name="SelectGroupForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.SelectGroupForm" />
+
+<form-bean 
+  name="GroupSearchForm" 
+  type="com.mgmtassessment.execmap.webapp.main.group.form.GroupSearchForm" />
+
+<form-bean 
+  name="CompanySearchForm" 
+  type="com.mgmtassessment.execmap.webapp.main.company.form.CompanySearchForm" />
+  
+<form-bean 
+  name="LoginStubForm" 
+  type="com.mgmtassessment.execmap.webapp.main.login.form.LoginStubForm" />
+  
+<form-bean 
+  name="GlobalSettingsForm" 
+  type="com.mgmtassessment.execmap.webapp.main.globalsettings.form.GlobalSettingsForm" />
+  
+<form-bean 
+  name="PDFConverterForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.PDFConverterForm" />
+  
+<form-bean 
+  name="SkillSummaryForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.SkillSummaryForm" />
+  
+<form-bean 
+  name="SkillSelectionForm" 
+  type="com.mgmtassessment.execmap.webapp.main.report.form.SkillSelectionForm" />
+  
+<form-bean 
+  name="LanguagesForm" 
+  type="com.mgmtassessment.execmap.webapp.main.login.form.LoginLanguagesForm" />
+  
+<form-bean 
+  name="LoginManagementForm" 
+  type="com.mgmtassessment.execmap.webapp.main.loginmanagement.form.LoginManagementForm" />
+  
+  
+
+</form-beans> 
+
+
+<!-- =========== Global Exception Definitions ========================  -->
+  <global-exceptions>
+
+    <!-- Put your Global Exceptions here  -->
+
+  </global-exceptions>
+
+<!-- =========== Global Forward Definitions =========================== -->
+
+    <global-forwards>
+     
+      <forward   name="systemfailure"   path="/pages/common/assessmenterror.jsp"/>
+      
+       <forward   name="securitybreach"   path="/pages/common/securitybreach.jsp"/>
+       
+       <forward   name="enableJavaScript"   path="/pages/common/EnableJSPError.jsp"/>
+       
+	    <forward   name="reLogin"   path="/pages/common/SessionError.jsp"/> 
+   </global-forwards>     
+
+<!-- =========== Action Mapping Definitions =========================== -->
+
+<action-mappings>     
+
+      <action 
+        path="/initlogin" 
+		type="org.apache.struts.actions.ForwardAction"
+        input="index.jsp" 
+        parameter="/pages/common/login.jsp" />
+
+     <action 
+        path="/initlaguages" 
+		type="com.mgmtassessment.execmap.webapp.main.login.action.LoginLanguageAction"
+        name="LanguagesForm"
+        parameter="NOSESS"
+	    validate="false">
+        <forward name="success" path="/pages/common/Language.jsp" /> 
+     </action> 
+
+     <action path="/changelanguage" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.LanguageAction" 
+          name="LoginForm"
+          parameter="NOSESS" 
+          scope="session" 
+          validate="false"
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/loginexecmap.jsp" />
+     </action>
+
+     <action path="/login" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.LoginAction" 
+          name="LoginForm" 
+          parameter="NOSESS"
+          scope="request" 
+          validate="true" input="/loginexecmap.jsp"
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/admin.jsp" />
+     </action>
+     <action path="/help" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.Help" 
+          name="LoginForm" 
+          scope="request" 
+          validate="false" 
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="global" path="/html/Help/GlobalIndex.htm" />
+         <forward name="company" path="/html/Help/CompanyManagerIndex.htm" />
+         <forward name="group" path="/html/Help/GroupManagerIndex.htm" />
+         <forward name="user" path="/html/Help/CompUserIndex.htm" />
+      </action>
+  
+	  <action path="/ChangePassword" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.ChangePassword" 
+          name="ChangePasswordForm"
+          parameter="NOSESS" 
+          scope="request" 
+          validate="false"
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/changepassword.jsp" />
+      </action>
+  
+      <action path="/ForgetPassword" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.ForgetPassword" 
+          name="LoginForm" 
+          parameter="NOSESS"
+          scope="request" 
+          validate="false"
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/forgetpassword.jsp" />
+      </action>
+  
+      <action path="/UpdatePassword" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.UpdatePassword" 
+          name="ChangePasswordForm"
+          parameter="NOSESS" 
+          scope="request" 
+          validate="true" input="/changepassword.jsp"
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="failure" path="/changepassword.jsp" />
+         <forward name="success" path="/changeconformation.jsp" />
+      </action>
+  
+      <action path="/PasswordReminder" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.PasswordReminder" 
+          name="PasswordReminderForm"
+          parameter="NOSESS" 
+          scope="request" 
+          validate="true" input="/forgetpassword.jsp"
+          className="com.perot.intellicue.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="failure" path="/forgetpassword.jsp" />
+         <forward name="success" path="/forgotconformation.jsp" />
+      </action>
+  
+	  <action path="/AdminAction" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.AdminAction" 
+          scope="request" 
+          validate="false">
+         <forward name="success" path="/admin.jsp" />
+      </action>
+  
+  	  <action path="/AddCompanyAction" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.AddCompanyAction" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/company/addcompany.jsp" />
+      </action>
+  
+      <action path="/EditCompanyAction" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.EditCompanyAction" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/company/editcompany.jsp" />
+       </action> 
+  
+       <action path="/CobrandAction" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.CobrandAction"
+          name="UploadForm" 
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/company/addcobrand.jsp" />
+       </action>
+   
+       <action path="/companyaccount" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.CompanyAccountAction" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="true" input="/pages/company/addcompany.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/company/message.jsp" />
+         <forward name="failure" path="/pages/company/addcompany.jsp" />
+       </action>
+  
+       <action path="/UserSearchAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.UserSearchAction" 
+          name="UserSearchForm"
+          scope="request" 
+          validate="false" input="/pages/user/searchUser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/searchUser.jsp" />
+       </action>
+    
+      <action path="/EnableDisableUserAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.EnableDisableUser" 
+          name="UserAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/EnableDisableUser.jsp" />
+      </action>
+      
+       <action path="/ViewCompanyAction" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.ViewCompanyAction" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/company/viewcompany.jsp" />
+  </action>  
+  
+     <action path="/SendCompanyEmail" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.UpdateCompanyAccount" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="true" input="/pages/company/editcompany.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/company/editcompany.jsp" />
+  </action>
+   
+     <action path="/updatecompany" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.UpdateCompanyAccount" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="true" input="/pages/company/editcompany.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/company/editconformation.jsp" />
+         <forward name="failure" path="/pages/company/editcompany.jsp" />
+  </action>
+   
+   <action path="/upload" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.UploadAction" 
+          name="UploadForm"
+          scope="request" 
+          validate="true" input="/pages/company/addcobrand.jsp" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/company/imageconfirmation.jsp" />
+         <forward name="failure" path="/pages/company/addcobrand.jsp" />
+  </action>
+  
+    <action path="/ShowImageList" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.ShowImageList" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/company/imageslist.jsp" />
+  </action>
+   
+    <action path="/EnableDisableCompany" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.EnableDisableCompany" 
+          name="CompanySearchForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/CompanySearchAction.do" />
+  </action>
+   <action path="/EnableDisableGroup" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.EnableDisableGroup" 
+          name="GroupSearchForm" 
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/enabledisableGroupSuccessAction.jsp" />
+  </action>
+  
+  
+  <action path="/ShowDisableCompanies" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.ShowDisableCompanies" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false" input="/pages/company/noresult.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/company/deletecompany.jsp" />
+         <forward name="failure" path="/pages/company/noresult.jsp" />
+  </action>
+  
+  <action path="/ShowDisableGroups" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.ShowDisableGroups" 
+          name="DeleteDisableGroupForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/deletedisabledgroups.jsp" />
+  </action>
+  <action path="/DeleteSelectedGroup" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.DeleteGroupAction" 
+          name="DeleteDisableGroupForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/deleteGroupConfirm.jsp" />       
+         
+  </action>
+  <action path="/ShowDisableUsers" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.ShowDisabledUsersAction" 
+          name="ShowDisabledUsersForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/deletedisabledusers.jsp" />
+  </action>
+   <action path="/DeleteSelectedUser" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.DeleteUserAction" 
+          name="ShowDisabledUsersForm"
+          scope="request" 
+          validate="true" input="/pages/user/deletedisabledusers.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/deleteUserConfirm.jsp" />       
+         
+  </action>
+    <action path="/MoveSelectedUser" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.MoveUserAction" 
+          name="UserSearchForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/moveSelectedUserSuccessAction.jsp" />       
+         
+  </action>
+  <action path="/GroupManagement" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.GroupSearchAction"
+          name="GroupSearchForm"
+          scope="request"
+          validate="false"  input="/pages/group/groupManagement.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>  
+          <forward name="success" path="/pages/group/groupManagement.jsp"/>
+  </action>
+  
+ <action path="/ChangeProfile" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.ChangeProfileAction" 
+          name="UserAccountForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/pages/user/changeProfileUser.jsp" />       
+         
+  </action>
+  
+   
+   
+    <action path="/deletecompany" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.DeleteCompanyAction" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/company/confirmation.jsp" />
+         <forward name="failure" path="/ShowDisableCompanies.do" />
+         
+  </action>
+    
+   <action path="/ShowUserCreation" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.ShowUserCreation" 
+          name="UserCreationForm"
+          scope="request" 
+          validate="false" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/usercreation.jsp" />
+  </action>
+  
+  <action path="/usercreation" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.UserCreationAction" 
+          name="UserCreationForm"
+          scope="request" 
+          validate="true" 
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/user/confirmation.jsp" />
+         <forward name="failure" path="/pages/user/usercreation.jsp" />
+         <forward name="errorRecords" path="/pages/user/errors.jsp" />
+ 	 </action>
+   
+   <action path="/AddGroupAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.AddGroupAction" 
+          name="GroupAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/addgroup.jsp" />
+  </action>
+  
+  
+  <action path="/groupAccountAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.GroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request" 
+          validate="true" input="/pages/group/addgroup.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/AddConfirm.jsp" />
+  </action>
+  
+  
+   <action path="/viewGroupAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.ViewGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+           validate="false" input="/pages/group/viewgroup.jsp"
+           className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/group/viewgroup.jsp" />
+  </action>
+   
+   <action path="/editGroupAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.ViewGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="false"  input="/pages/group/editgroup.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/editgroup.jsp" />
+  </action>
+    <action path="/editGroupManagementAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.ViewGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="false"  input="/pages/group/editgroupManagement.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/group/editgroupManagement.jsp" />
+  </action>
+  
+  <action path="/SendGroupEmailAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.UpdateGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="true" input="/pages/group/editgroup.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/editgroup.jsp" />
+  </action>
+  
+  <action path="/updateGroupAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.UpdateGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="true" input="/pages/group/editgroup.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/updateGroup.jsp" />
+  </action>
+  
+  <action path="/SendGroupManagementEmailAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.UpdateGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="true" input="/pages/group/editgroupManagement.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/group/editgroupManagement.jsp" />
+  </action>
+  
+  <action path="/updateGroupManagementAction" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.UpdateGroupAccountAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="true" input="/pages/group/editgroupManagement.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/group/updateGroupManageMent.jsp" />
+  </action>
+   <action path="/AddUserAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.AddUserAction" 
+          name="UserAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/adduser.jsp" />
+  </action>
+    <action path="/userAccountAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.CreateUserAction" 
+          name="UserAccountForm"
+          scope="request" 
+          validate="true" input="/pages/user/adduser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/AddConfirm.jsp" />
+  </action>
+     <action path="/viewUserAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.ViewUserAccountAction" 
+          name="UserAccountForm"
+          scope="request"
+          validate="false" input="/pages/user/viewuser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/viewuser.jsp" />
+  </action>
+     <action path="/editUserAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.ViewUserAccountAction" 
+          name="UserAccountForm"
+          scope="request"
+          validate="false" input="/pages/user/editUser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/editUser.jsp" />
+  </action>
+   
+   <action path="/SendUserEmailAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.UpdateUserAction" 
+          name="UserAccountForm"
+          scope="request"
+          validate="true" input="/pages/user/editUser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/editUser.jsp" />
+  </action>
+  
+  <action path="/updateUserAction" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.UpdateUserAction" 
+          name="UserAccountForm"
+          scope="request"
+          validate="true" input="/pages/user/editUser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/user/updateUser.jsp" />
+  </action>
+   <action path="/updateChangeProfile" 
+          type="com.mgmtassessment.execmap.webapp.main.user.action.UpdateCompanyUserAction" 
+          name="UserAccountForm"
+          scope="request"
+          validate="true" input="/pages/user/changeProfileUser.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/pages/user/changeProfileUserConfirmation.jsp" />
+  </action>
+  
+  <!-- ============= Assessment Module Action ===================  -->
+  
+   <action 
+        path="/invalidate" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentContextInvalidateAction"
+        name=""
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   </action>     
+  
+<action 
+        path="/eligible" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.UserEligibilityAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="EMS" path="/InitEMSX.do" redirect="true"/>
+   <forward name="CFS" path="/InitCFSX.do" redirect="true"/>
+   <forward name="CMI" path="/InitCMIX.do" redirect="true"/>
+   <forward name="CSR" path="/InitCSRX.do" redirect="true"/>
+   <forward name="NST" path="/InitNSTX.do" redirect="true"/>
+   <forward name="NMT" path="/InitNMTX.do" redirect="true"/>
+   <forward name="ESS" path="/InitESSX.do" redirect="true"/>
+   <forward name="EFC" path="/InitEFCX.do" redirect="true"/>
+   <forward name="MEM" path="/InitMEMX.do" redirect="true"/>
+   <forward name="MEMWS" path="/InitMEMWSX.do" redirect="true"/>
+   <forward name="CMS" path="/InitCMSX.do" redirect="true"/>
+   <forward name="ESC" path="/InitESCX.do" redirect="true"/>
+   <forward name="DMS" path="/InitDMSX.do" redirect="true"/>
+   <forward name="NFU" path="/InitNFUX.do" redirect="true"/>
+   <forward name="fail" path="/pages/assessment/buttonsinstruction.jsp"/>
+</action>
+
+   <action 
+        path="/InitEMSX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+        parameter="EMS"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/emsassessment.jsp"/>
+   <forward name="complete" path="/InitCFSX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+   <action 
+        path="/InitCFSX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+         parameter="CFS"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/cfsassessment.jsp"/>
+   <forward name="complete" path="/InitCMIX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+   <action 
+        path="/InitCMIX" 
+   		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+        parameter="CMI"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/cmiassessment.jsp"/>
+   <forward name="complete" path="/InitCSRX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+   <action 
+        path="/InitCSRX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+         parameter="CSR"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/csrassessment.jsp"/>
+   <forward name="complete" path="/InitNSTX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+   <action 
+        path="/InitNSTX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentMultipleAnswerAction"
+        name="AssessmentMultiForm"
+         parameter="NST"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/nstassessment.jsp"/>
+   <forward name="complete" path="/InitNMTX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+   <action 
+        path="/InitNMTX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+         parameter="NMT"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/nmtassessment.jsp"/>
+   <forward name="complete" path="/InitESSX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+
+   <action 
+        path="/InitESSX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentMultipleAnswerAction"
+        name="AssessmentMultiForm"
+        parameter="ESS"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/essassessment.jsp"/>
+   <forward name="complete" path="/InitEFCX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+   <action 
+        path="/InitEFCX" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+        parameter="EFC"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/efcassessment.jsp"/>
+   <forward name="complete" path="/InitMEMX.do" redirect="true"/>
+   <forward name="completesound" path="/InitMEMWSX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+       <action 
+        path="/InitMEMX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.MemAssessmentAction"
+        name="AssessmentMultiForm"
+        parameter="MEM"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/memassessment.jsp"/>
+   <forward name="complete" path="/InitCMSX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>   
+   </action>
+   
+   <action 
+        path="/InitMEMWSX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.MemAssessmentAction"
+        name="AssessmentMultiForm"
+        parameter="MEMWS"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/memwsassessment.jsp"/>
+   <forward name="complete" path="/InitCMSX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+       <action 
+        path="/InitCMSX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+        parameter="CMS"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/cmsassessment.jsp"/>
+   <forward name="complete" path="/InitESCX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>   
+   </action>
+   
+   
+     <action 
+        path="/InitESCX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentAction"
+        name="AssessmentForm"
+        parameter="ESC"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/escassessment.jsp"/>
+   <forward name="complete" path="/InitDMSX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+      <action 
+        path="/InitDMSX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.AssessmentMultipleAnswerAction"
+        name="AssessmentMultiForm"
+        parameter="DMS"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/dmsassessment.jsp"/>
+   <forward name="complete" path="/InitNFUX.do" redirect="true"/>
+   <forward name="testexpired" path="/Assessmenttimeexpired.do" redirect="true"/>
+      </action>
+      
+      <action 
+        path="/InitNFUX" 
+		type="com.mgmtassessment.execmap.webapp.main.assessment.action.NfuAssessmentAction"
+        name="AssessmentMultiForm"
+        parameter="NFU"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/nfuassessment.jsp"/>
+   <forward name="complete" path="/finishtest.do" redirect="true"/>
+   <forward name="testexpired" path="/NFUAssessmenttimeexpired.do" redirect="true"/>
+   </action>
+   
+  <action 
+        path="/welcometest" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.PreAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/welcometest.jsp"/>
+   </action>
+   
+      <action 
+        path="/showinstruction" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.PreAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/buttonsinstruction.jsp"/>
+   </action>
+   
+         <action 
+        path="/soundinstruction" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.PreAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/Soundinstruction.jsp"/>
+   </action>
+
+ <action 
+        path="/finishtest" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.PreAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/assessmentfinish.jsp"/>
+   </action>
+   
+   
+ <action 
+        path="/Assessmenttimeexpired" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.PreAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/assessmenttimeexpire.jsp"/>
+   </action>   
+   
+    <action 
+        path="/NFUAssessmenttimeexpired" 
+        type="com.mgmtassessment.execmap.webapp.main.assessment.action.PreAssessmentAction"
+        name="AssessmentInstForm"
+        scope="request"
+        validate="false"
+        className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>  
+   <forward name="success" path="/pages/assessment/nfuassessmenttimeexpire.jsp"/>
+   </action>   
+   
+   <!-- ============= Assessment Module Action Ends Here===================  -->
+   
+    <action 
+        path="/SearchGroup" 
+        type="com.mgmtassessment.execmap.webapp.main.group.action.GroupSearchAction"
+        name="GroupSearchForm"
+        scope="request"
+         validate="false"  input="/pages/group/searchgroup.jsp"
+         className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>  
+   <forward name="success" path="/pages/group/searchgroup.jsp"/>
+     </action>
+     
+     
+     <action 
+        path="/CompanySearchAction" 
+        type="com.mgmtassessment.execmap.webapp.main.company.action.CompanySearchAction"
+        name="CompanySearchForm"
+        scope="request"
+  validate="false" input="/pages/account/accountmanagement.jsp"
+  className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>  
+   <forward name="success" path="/pages/account/accountmanagement.jsp"/>
+     </action>
+     
+    <action path="/ViewImageAction" 
+          type="com.mgmtassessment.execmap.webapp.main.company.action.ViewImageAction" 
+          name="CompanyAccountForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/company/viewimage.jsp" />
+  </action>
+   
+   <!-- ============= Reports Module Action ===================  -->
+   
+   <action path="/EnableCompaniesReport" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.EnableDisableListCompanyAction" 
+          name="EnableCompaniesListForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/reports/EnabledDisabledCompaniesList.jsp" />
+  </action>
+  
+   <action path="/SkillSummaryMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectGroupAction" 
+          name="SelectGroupForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+          <forward name="skillreport" path="/SkillSelection.do"/>
+         <forward name="success" path="/pages/reports/SkillSummarySelection.jsp" />
+  </action>
+
+<action path="/SkillSummaryReport" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SkillSummaryAction" 
+          name="SkillSummaryForm"
+          scope="request" 
+          validate="false" input="/pages/reports/skillselection.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/SkillSummary.jsp" />
+  </action>
+  
+  <action path="/SkillSelection" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SkillSelectionAction" 
+          name="SkillSummaryForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/skillselection.jsp" />
+  </action>
+  
+  <action path="/AssessmentSummaryMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectGroupAction" 
+          name="SelectGroupForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/reports/AssessmentSummarySelection.jsp" />
+  </action>
+  
+      <action path="/AssessmentSummaryReport" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.AssessmentSummaryReport" 
+          name="AssessmentSummaryForm"
+          scope="request"
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/reports/AssessmentSummaryReport.jsp" />
+  </action>
+  
+  <action path="/GeneralIndividualMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectUserAction" 
+          name="SelectUserForm"
+          scope="request" 
+          validate="false" input="pages/reports/GeneralIndividualSelection.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/GeneralIndividualSelection.jsp" />
+  </action>
+  
+    <action path="/GeneralReports" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.GeneralReportsAction" 
+          name="GeneralReportsForm"
+          scope="request" 
+          validate="false" input="/pages/reports/Reports.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/Reports.jsp" />
+  </action>
+  
+  <action path="/LeadershipEMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectUserAction" 
+          name="SelectUserForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/LeadershipReportESelection.jsp" />
+  </action>
+  
+  <action path="/LeadershipAMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectUserAction" 
+          name="SelectUserForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/LeadershipReportASelection.jsp" />
+  </action>
+ 
+  <action path="/LeadershipManagementMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectUserAction" 
+          name="SelectUserForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/reports/LeadershipReportManagementSelection.jsp" />
+  </action>
+  
+  <action path="/IndividualSummaryMenu" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.SelectUserAction" 
+          name="SelectUserForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/IndividualSummarySelection.jsp" />
+  </action> 
+  
+  <action path="/IndividualUserReport" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.IndividualSummaryReportAction" 
+          name="IndividualSummaryReportForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/reports/IndividualScoreReport.jsp" />
+  </action>  
+  
+  <action path="/editGlobalSetting" 
+          type="com.mgmtassessment.execmap.webapp.main.globalsettings.action.EditGlobalSettingsAction" 
+          name="GlobalSettingsForm"
+          scope="request" 
+          validate="true" input="/pages/globalsettings/globalSetting.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="admin" path="/admin.jsp" />    
+         <forward name="login" path="/index.jsp" />    
+  </action>
+  
+  <action path="/GlobalSetting" 
+          type="com.mgmtassessment.execmap.webapp.main.globalsettings.action.GlobalSettingsAction" 
+          name="GlobalSettingsForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="1"/>
+         <forward name="success" path="/pages/globalsettings/globalSetting.jsp" />         
+  </action>
+  
+  <action path="/PDFConverter" 
+          type="com.mgmtassessment.execmap.webapp.main.report.action.PDFConverter" 
+          name="PDFConverterForm"
+          scope="request" 
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/pages/reports/pdfopener.jsp" />         
+  </action>
+  
+  <action path="/moveUsers" 
+          type="com.mgmtassessment.execmap.webapp.main.group.action.MoveUsersAction" 
+          name="GroupAccountForm"
+          scope="request"
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="2"/>
+         <forward name="success" path="/pages/group/updateGroup.jsp" />
+  </action>
+  
+  <action path="/lockedUsers" 
+          type="com.mgmtassessment.execmap.webapp.main.loginmanagement.action.LoginMangementAction" 
+          name="LoginManagementForm"
+          scope="request"
+          validate="false" input="/pages/loginmanagement/lockedusers.jsp"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="3"/>
+         <forward name="success" path="/pages/loginmanagement/lockedusers.jsp" />
+  </action>
+  
+   <action path="/logout" 
+          type="com.mgmtassessment.execmap.webapp.main.login.action.LogoutAction" 
+          scope="request"
+          validate="false"
+          className="com.mgmtassessment.execmap.security.AuthenticateExecmapRoles"
+          >
+          <set-property property="role" 
+                 value="5"/>
+         <forward name="success" path="/" />
+  </action>
+  
+  
+</action-mappings>
+
+<!-- ============= TIles Controller Configuration ===================  -->
+
+<controller processorClass="org.apache.struts.tiles.TilesRequestProcessor" bufferSize="4096" debug="2"/>  
+
+
+
+<!-- ============  Set the Mesasage Resources for Execmap ============ -->
+
+<message-resources key="execmap" parameter="com.mgmtassessment.execmap.resources.ExecmapResources" />
+<message-resources key="assessment" parameter="com.mgmtassessment.execmap.resources.AssessmentResources" />
+<message-resources parameter="com.mgmtassessment.execmap.resources.ApplicationResources" />
+
+<!-- ================== Tiles plugin ================================= --> 
+
+
+<plug-in className="org.apache.struts.tiles.TilesPlugin">
+   <set-property property="moduleAware" value="true" />
+   <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+</plug-in>
+
+<!-- =====================Validator Configuration==================== -->
+
+<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+  <set-property property="pathnames"  value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml"/>
+</plug-in>
+
+
+<!-- =====================Timer for file deletion Configuration==================== -->
+<!-- ======Note : the timePeriod should be in continous numbers, NO multiplication symbols == -->
+
+<plug-in className="com.mgmtassessment.execmap.common.util.webapp.FileScheduleCleanupPlugin">
+   <set-property property="filePath"  value="C:\apache-tomcat-5.5.17\webapps\execmap\html\reports"/>
+   <set-property property="timePeriod" value="3600000" />
+</plug-in>
+
+
+</struts-config>

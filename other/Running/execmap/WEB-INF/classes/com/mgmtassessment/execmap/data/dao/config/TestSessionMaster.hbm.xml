@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.TestSessionMaster" 
+    table="test_ses_mas"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.perot.intellicue.data.dao.types.TestSessionMasterKey">
+        <key-property 
+            name="acctId" 
+            column="acct_id" 
+            type="java.lang.String"
+            length="10"
+        />
+        <key-property 
+            name="sesId" 
+            column="ses_id" 
+            type="java.lang.Integer"
+            length="10"
+        />
+    </composite-id>    
+
+    <property
+        name="usrId"
+        type="java.lang.String"
+        column="usr_id"
+        not-null="true"
+        length="15"
+    />
+    <property
+        name="compFlg"
+        type="java.lang.String"
+        column="comp_flg"
+        length="1"
+    />
+    <property
+        name="timesAnserChanged"
+        type="java.lang.Integer"
+        column="times_answer_changed"
+        length="10"
+    />
+    <property
+        name="timesExpired"
+        type="java.lang.Integer"
+        column="times_expired"
+        length="10"
+    />
+    <property
+        name="dtStart"
+        type="java.sql.Timestamp"
+        column="dt_start"
+        not-null="true"
+        length="23"
+    />
+    <property
+        name="dtEnd"
+        type="java.sql.Timestamp"
+        column="dt_end"
+        length="23"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to AcctMa -->
+    <many-to-one
+        name="acctMa"
+	    class="com.perot.intellicue.data.dao.types.AcctMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="acct_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+    <!-- bi-directional one-to-many association to TestSesScrDetNfu -->
+
+    <set
+        name="testSesScrDetNfus"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="acct_id" />
+            <column name="ses_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.TestSesScrDetNfu"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to TestSesSkillScrDet -->
+
+    <set
+        name="testSesSkillScrDets"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="acct_id" />
+            <column name="ses_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.TestSesSkillScrDet"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to TestSesScrDet -->
+
+    <set
+        name="testSesScrDets"
+        lazy="true"
+        inverse="true"
+		cascade="all"
+
+    >
+        <key>
+            <column name="acct_id" />
+            <column name="ses_id" />
+        </key>
+        
+        <one-to-many 
+            class="com.perot.intellicue.data.dao.types.TestSesScrDet"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

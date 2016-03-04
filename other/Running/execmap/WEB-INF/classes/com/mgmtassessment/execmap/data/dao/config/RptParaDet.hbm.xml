@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.2
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="com.perot.intellicue.data.dao.types.RptParaDet" 
+    table="rpt_para_det"
+    lazy="false"
+>
+
+    <composite-id name="comp_id" class="com.perot.intellicue.data.dao.types.RptParaDetKey">
+        <key-property 
+            name="rptId" 
+            column="rpt_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+        <key-property 
+            name="condId" 
+            column="cond_id" 
+            type="java.lang.Short"
+            length="5"
+        />
+    </composite-id>    
+
+    <property
+        name="paraId"
+        type="java.lang.String"
+        column="para_id"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="version"
+        type="java.lang.Integer"
+        column="version"
+        length="10"
+    />
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- bi-directional many-to-one association to RptMa -->
+    <many-to-one
+        name="rptMa"
+	    class="com.perot.intellicue.data.dao.types.ReportMaster"
+	    update="false"
+	    insert="false"
+	>
+    	<column name="rpt_id" />
+	</many-to-one>
+	
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>
