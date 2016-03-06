@@ -6,13 +6,13 @@ This folder contains eclipse project
 
 # Other
 This folder contains 
-  a. Database - DB dump from test instance
-  b. Documents - Design documents
-  c. Running - copy of existing test instance binary setup
-    i. ext-libs - Jars required to build project
-    ii. execmap - complete war folder from test instance
-    iii. server.xml and context.xml from test instance
-  d. Final_Delivery - this is what client has given us (so called deliverables from earlier vendor)
+##  a. Database - DB dump from test instance
+##  b. Documents - Design documents
+##  c. Running - copy of existing test instance binary setup
+  ###  i. ext-libs - Jars required to build project
+  ###  ii. execmap - complete war folder from test instance
+  ###  iii. server.xml and context.xml from test instance
+##  d. Final_Delivery - this is what client has given us (so called deliverables from earlier vendor)
 
 
 # Developer instructions -
