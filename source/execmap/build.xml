@@ -1,0 +1,37 @@
+<?xml version="1.0" ?> 
+<project name="execmap" default="war">
+
+	<path id="compile.classpath">
+		<fileset dir="C:/dev/project/WEB-INF/lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="C:/apache-tomcat-5.5.17/common/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="init">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="dist" />
+	</target>
+	
+	<target name="compile" depends="init" >
+		<javac destdir="build/classes" debug="true" srcdir=".">
+			<classpath refid="compile.classpath"/>
+		</javac>
+	</target>
+	
+	<target name="war" depends="compile">
+		<war destfile="dist/execmap.war" webxml="com/mgmtassessment/execmap/webapp/WEB-INF/web.xml">
+			<fileset dir="C:/dev/project/execmap/web"/>
+			<lib dir="C:/dev/project/WEB-INF/lib"/>
+			<classes dir="build/classes"/>
+		</war>
+	</target>
+	
+	<target name="clean">
+		<delete dir="dist" />
+		<delete dir="build" />
+	</target>
+	
+</project>
