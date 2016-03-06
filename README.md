@@ -1,8 +1,11 @@
 # execmap
 Repository for execmap
 
-Source folder contains eclipse project
-Other folder contains 
+# Source 
+This folder contains eclipse project
+
+# Other
+This folder contains 
   a. Database - DB dump from test instance
   b. Documents - Design documents
   c. Running - copy of existing test instance binary setup
@@ -12,7 +15,7 @@ Other folder contains
   d. Final_Delivery - this is what client has given us (so called deliverables from earlier vendor)
 
 
-Developer instructions -
+# Developer instructions -
 1. Refer source/ folder for instructions on environment setup and eclipse project setup
 2. Goal is to first setup replica of test instance on our local env and start debugging the issues
 3. Once we have grasp of the system and identify the root issues and fixes, we apply and verify within same env.
