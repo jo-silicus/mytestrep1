@@ -19,4 +19,16 @@ Once the basic setup is done and we have a running system, we can start debuggin
   b. Add all the jars from above path to build path.
 3. Open build.xml and read comments at the top for properties that need to change.
 4. You will need to checkout few other libraries from /other/Running/execmap folder to make it work.
+5. 
+
+# Information on Project architecture -
+1. There are admin and assessment sections of the product that work based on logged in user type. 
+2. Project is built on Struts, Hibernate, Tiles, Spring.
+3. There are i18n elements which are crucial for us to understand considering the bugs are related to languages.
+4. The UI layer is also important to understand since we are going to work on making it responsive. Knowing the way tiles and struts work together to create different pages based on various layouts will help us.
+5. There are parts of reporting which uses PDF/Word/Html report generation. We may need to work on this layer at a later stage for minor enhancements.
+6. The DB layer is not supposed to be touched considering we are not changing any business logic.
+7. The language support can be added using a language.properties file. Refer to other/Final_Delivery/ for User manual.
+8. As of now only English is supported and other languages do not work as expected. We need to find a way out to support them.
+9. The branding portion works by only adding logo/images via admin portal
   
