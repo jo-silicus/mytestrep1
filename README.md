@@ -3,6 +3,7 @@ Repository for execmap
 
 # Source 
 This folder contains eclipse project.
+Refer README file under source folder for more technical details.
 
 # Other
 This folder contains 
