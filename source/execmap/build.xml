@@ -23,7 +23,7 @@
 	
 	<target name="war" depends="compile">
 		<war destfile="dist/execmap.war" webxml="com/mgmtassessment/execmap/webapp/WEB-INF/web.xml">
-			<fileset dir="C:/dev/project/execmap/web"/>
+			<fileset dir="web"/>
 			<lib dir="C:/dev/project/WEB-INF/lib"/>
 			<classes dir="build/classes"/>
 		</war>
