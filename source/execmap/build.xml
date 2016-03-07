@@ -1,19 +1,23 @@
 <?xml version="1.0" ?> 
 <project name="execmap" default="war">
-
+	<!--
+	Checkout contents of running WAR from github /other/Running/execmap.
+	Keep this WAR content for build purpose only. 
+	Refer to WEB-INF/lib of this folder in below property.
+	-->
+	<property name="webinf.lib.path" value="C:/dev/project/WEB-INF/lib"/>
+	
+	<!-- Download Tomcat from below link. Update tomcat.base.path accordingly
+	https://archive.apache.org/dist/tomcat/tomcat-5/v5.5.26/bin/apache-tomcat-5.5.26.zip 
+	-->
+	<property name="tomcat.base.path" value="C:/apache-tomcat-5.5.17"/>
 	<path id="compile.classpath">
-		<!--
-		Checkout contents of running WAR from github /other/Running/execmap.
-		Keep this WAR content for build purpose only. 
-		Refer to WEB-INF/lib of this folder in below fileset dir.
-		-->
-		<fileset dir="C:/dev/project/WEB-INF/lib">
+		
+		<fileset dir="${webinf.lib.path}">
 			<include name="*.jar"/>
 		</fileset>
-		<!-- Download Tomcat from below link. Update path accordingly
-		https://archive.apache.org/dist/tomcat/tomcat-5/v5.5.26/bin/apache-tomcat-5.5.26.zip 
-		-->
-		<fileset dir="C:/apache-tomcat-5.5.17/common/lib">
+		
+		<fileset dir="${tomcat.base.path}/common/lib">
 			<include name="*.jar"/>
 		</fileset>
 	</path>
@@ -32,12 +36,7 @@
 	<target name="war" depends="compile">
 		<war destfile="dist/execmap.war" webxml="com/mgmtassessment/execmap/webapp/WEB-INF/web.xml">
 			<fileset dir="web"/>
-			<!--
-			Checkout contents of running WAR from github /other/Running/execmap.
-			Keep this WAR content for build purpose only. 
-			Refer to WEB-INF/lib of this folder in below lib dir.
-			-->
-			<lib dir="C:/dev/project/WEB-INF/lib"/>
+			<lib dir="${webinf.lib.path}"/>
 			<classes dir="build/classes"/>
 		</war>
 	</target>
